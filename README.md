@@ -1,7 +1,7 @@
 logik
 =====
 
-Inoffizielles Vorlesungsskript zur Vorlesung "Logik", WS13/14, Philipps-Universität Marbrg, bei Herrn Prof. Volkmar Welker
+Inoffizielles Vorlesungsskript zur Vorlesung "Logik", WS13/14, Philipps-Universität Marubrg, bei Herrn Prof. Volkmar Welker
 
 Format: LaTeX, UTF-8 kodiert, kompilliert mit TexLive
 
