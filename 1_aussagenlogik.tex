@@ -1,0 +1,71 @@
+% VL vom 14.10.2013
+
+\section{Aussagenlogik}
+
+Logische Systeme haben immer zwei Teile:
+\begin{itemize}
+\item Syntax (Formeln)
+\item Semantik (Wahrheitswert der Formeln)
+\end{itemize}
+
+\definition{(Syntax der Aussagenlogik)}
+\begin{itemize}
+\item Menge $A = \{ A_1, A_2, ... \}$ von atomaren Formeln
+\item Wir definieren induktiv die Menge der Formeln der Aussagenlogik
+    \begin{itemize}
+        \item jede atomare Formel ist Formel
+        \item sind $G$ und $H$ Formel, so auch $( G \AND H )$ „$G$ und $H$“ $(G \OR H)$ „$G$ oder $H$“ $\neg G$ „nicht $G$“
+    \end{itemize}
+\end{itemize}
+
+\beweis{}
+Die Menge der Formeln der Aussagenlogik ist Sprache (= Menge von Wörtern) über Alphabet $A \cup \{\AND, \OR, \neg, (, ) \})$\\
+
+\beispiel{}
+\begin{itemize}
+\item $ \left( ( A_{17} \OR A_2 ) \AND \neg (A_3 \AND A_4) \right)$\\
+    Formel der Aussagenlogik
+\item reine syntaktische Objekte\\
+    $\neg \neg A \neq A$
+\end{itemize}
+
+\beweis{}
+Sei $G$ eine Formel der Aussagenlogik\\
+$T(G)$ die Menge der Teilformeln von $G$ induktiv definiert als\\
+$T(G) = \{ G \}$ falls $G$ atomare Formel\\
+$T(G) = T(G_1) \OR T(G_2) \cup \{G\}$\\
+falls $G = (G_1 \OR G_2)$ oder $G=(G_1 \AND G_2)$\\
+$T(G)=T(G_1) \cup \{G\}$\\
+
+\beispiel{}
+$G= \left( (A_A \AND A_2) \OR \neg (A_3 \AND A_4) \right)$\\
+$T(G) = T \left( (A_{17} \OR A_2) \right) \cup T \left(\neg ( A_3 \AND A_4) \right) \cup \{G\}$\\
+$= \{ A_{17}, A_2, (A_{17} \OR A_2) \} \cup T((A_3 \OR A_4)) \cup \{ \neg (A_3 \OR A_4) \} \cup \{G\}$\\
+$= \{A_{17}, A_2, (A_{17} \OR A_2), A_3, A_4, (A_3 \AND A_4) \neg (A_3 \OR A_4), \left( (A_{17} \OR A_2) \AND \neg (A_3 \OR A_4) \right) \}$\\
+    
+\beweis{}
+$T(G)$ ist die Menge der Formeln, die bei der induktiven Konstruktion von $G$ auftauchen.\\
+\noindent\\
+Sprechweisen:
+\begin{tabbing}
+Für $(G \AND H)$ \= sagt man auch „Konjunktion von $G$ und $H$“\\
+Für $(G \OR H)$ \> sagt man auch „Disjunktion von $G$ und $H$“\\
+Für $\neg G$ \> sagt man auch „Negation von G“.\\
+\end{tabbing}
+
+\noindent
+Abkürzende Schreibweisen:\\
+\noindent\\
+$G, H$ Formeln der Aussagenlogik\\
+$(G \rightarrow H)$ aus $G$ folgt $H$, für $(\neg G \AND H)$; $G$ impliziert $H$; Implikation\\
+$(G \leftrightarrow H)$ $G$ äquivalent zu $H$, für $(G \rightarrow H) \AND (H \rightarrow G)$; Äquivalenz\\
+$( \bigvee_{i=1}^{n} G_i )$ für $\left( … (G_1 \OR G_2) \OR G_3 ) … \OR G_n \right)$ \hspace{1cm}mit $G_1, …, G_n$ Formeln\\
+
+\definition{(Semantik der Aussagenlogik)}
+\begin{itemize}
+\item Sei $\emptyset \neq A' \subseteq A$ eine Teilmenge der atomaren Formeln
+\item Eine Abbildung $f: A' \rightarrow \{W,F\}$ (wahr, falsch)\\
+    heißt Interpretation von $A'$
+\item Eine Formel $G$ heißt Formel über $A'$ falls $T(G) \cap A \subseteq A'$
+\item eine Interpretation $f: A \sim \{W, F\}$ heißt passende Interpretation.\\
+\end{itemize}

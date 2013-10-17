@@ -1,0 +1,51 @@
+% die Hauptdatei
+% nur diese wird kompilliert
+% der Rest wird hier hineinimportiert
+
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+% verlinktes inhaltsverzeichnis (und mehr)
+\usepackage[colorlinks=true,linkcolor=blue,pdfpagelabels=true]{hyperref}
+
+\newcommand{\definition}[1]{\noindent \begin{large}\textbf{Def.: #1}\end{large}}
+\newcommand{\beweis}[1]{\noindent \begin{large}\textbf{Bew.: #1}\end{large}}
+\newcommand{\beispiel}[1]{\noindent \begin{large}\textbf{Bsp.: #1}\end{large}}
+
+\newcommand{\AND}{\wedge}
+\newcommand{\OR}{\vee}
+
+\usepackage{yfonts}
+\begin{document}
+%\swabfamily
+
+\title{Inoffizielles Vorlesungsskript zur Vorlesung „Logik“, Prof. Volkmar Welker, WS 2013/2014}
+\author{Stand:} % nein, ich heiße nicht wirlkich so …
+\maketitle
+
+\noindent
+\begin{center}
+Die offizielle Vorlesungsseite:\\
+\href{http://www.mathematik.uni-marburg.de/~welker/logik\_ws2013.html}{http://www.mathematik.uni-marburg.de/$\sim$welker/logik\_ws2013.html}
+\end{center}
+
+\noindent\\
+\begin{center}\begin{Large}Fehler und Verbesserungsvorschläge bitte melden an: \href{mailto:nano13@gmx.net}{nano13@gmx.net}\end{Large}\end{center}
+
+\noindent\\
+Die Vorlesung ist laut Herrn Welker an das Buch „Schöning, Logik für Informatiker“ angelehnt.
+
+\tableofcontents
+
+\newpage
+
+\input{1_aussagenlogik.tex}
+
+\end{document}
