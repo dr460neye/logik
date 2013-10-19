@@ -2,15 +2,18 @@
 % nur diese wird kompilliert
 % der Rest wird hier hineinimportiert
 
-\documentclass[a4paper]{scrartcl}
+\documentclass[a4paper, titlepage]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{ntheorem}
 %\usepackage{amsthm}
+%\usepackage{titlepic}
+\usepackage{float}
+\usepackage{enumerate}
 
 \usepackage[scaled]{helvet}
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
@@ -27,13 +30,32 @@
 \newcommand{\AND}{\wedge}
 \newcommand{\OR}{\vee}
 
+\newenvironment{rcases}{%
+  \left.\renewcommand*\lbrace.%
+  \begin{cases}}%
+{\end{cases}\right\rbrace}
+
 \usepackage{yfonts}
 \begin{document}
 %\swabfamily
 
-\title{Inoffizielles Vorlesungsskript zur Vorlesung „Logik“, Prof. Volkmar Welker, WS 2013/2014}
-\author{Stand:} % nein, ich heiße nicht wirlkich so …
-\maketitle
+%\titlepic{\includegraphics[width=0.5\textwidth]{logo.png}}
+%\title{Inoffizielles Vorlesungsskript zur Vorlesung „Logik“, WS 2013/2014}
+%\author{gehalten von Prof. Volkmar Welker}
+%\maketitle
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{logo.png}
+\end{figure}
+
+\begin{center}
+\begin{huge}inoffizielles Vorlesungsskript zur Vorlesung „Logik“, WS 2013/2014\end{huge}\\
+\vspace{1cm}
+\begin{large}gehalten von Prof. Volkmar Welker\end{large}\\
+\vspace{1cm}
+\begin{Large}\today \end{Large}
+\end{center}
 
 \noindent
 \begin{center}
@@ -42,15 +64,21 @@ Die offizielle Vorlesungsseite:\\
 \end{center}
 
 \noindent\\
-\begin{center}\begin{Large}Fehler und Verbesserungsvorschläge bitte melden an: \href{mailto:nano13@gmx.net}{nano13@gmx.net}\end{Large}\end{center}
+\begin{center}\begin{Large}Fehler und Verbesserungsvorschläge bitte melden an: \href{mailto:beckers4@mathematik.uni-marburg.de}{beckers4@mathematik.uni-marburg.de}\end{Large}\end{center}
+\vspace{1cm}
+\begin{center}
+empfohlenes Buch zur Vorlesung:\\
+„Schöning, Logik für Informatiker“
+\end{center}
 
-\noindent\\
-Die Vorlesung ist laut Herrn Welker an das Buch „Schöning, Logik für Informatiker“ angelehnt.
+\newpage
 
 \tableofcontents
 
 \newpage
 
-\input{1_aussagenlogik.tex}
+\input{1_aussagenlogik_14_10_2013.tex}
+\input{2_aussagenlogik_17_10_2013.tex}
+
 
 \end{document}

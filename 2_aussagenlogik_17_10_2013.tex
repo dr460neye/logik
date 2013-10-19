@@ -1,0 +1,179 @@
+
+\begin{flushright} 
+\textit{Vorlesung vom 17.10.2013}
+\end{flushright}
+
+\definition{}
+Sei $F_n$ die Menge aller Formeln über $\{A_1, …, A_n\}$ eine Teilmenge $K \subseteq F_n$ heißt semantische Klasse, falls $G \equiv H$ für $G, H \in K$ und $G \not\equiv H$ für $G\in K$ \hspace{.5cm} $H \in F_n \backslash K$\\
+
+\beispiel{}
+$F_1 = \{A_1, \neg A_1, A_1 \OR A_1, A_1 \AND A_1, … \}$\\
+
+\begin{minipage}{0.15\textwidth}
+\begin{tabular}{c|c}
+$A_1$ & $A_1$\\
+\hline
+F & F\\
+W & W\\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.15\textwidth}
+\begin{tabular}{c|c}
+$A_1$ & $\neg A_1$ \\
+\hline
+F & W\\
+W & F\\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.15\textwidth}
+\begin{tabular}{c|c}
+$A_1$ & $A_1 \OR A_1$\\
+\hline
+F & F\\
+W & W\\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.15\textwidth}
+\begin{tabular}{c|c}
+$A_1$ & $A_1 \OR \neg A_1$\\
+\hline
+F & W\\
+W & F\\
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.15\textwidth}
+\begin{tabular}{c|c}
+$A_1$ & $A$\\
+\hline
+F & F\\
+W & F\\
+\end{tabular}
+\end{minipage}\\
+\noindent\\
+$A_1 \equiv A_1 \OR A_1$\\
+\noindent\\
+Das sind alle Wahrheitstabellen, die bei einer atomaren Formel möglich sind.\\
+\noindent\\
+Die semantischen Klassen sind:\\
+$K_1 = \{G \in F_1 | G \equiv A_1\}$\\
+$K_2 = \{G \in F_1 | G \equiv \neg A_1\}$\\
+$K_3 = \{G \in F_1 | G \equiv A_1 \OR \neg A_1\}$\\
+$K_4 = \{G \in F_1 | G \equiv A_1 \AND \neg A_1\}$\\
+    
+\bemerkung{}
+„$\equiv$“ ist Äquivalenzrelation auf $F_n$ und die semantischen Klassen sind die Äquivalenzklasse bzgl „$\equiv$“\\
+    
+\bemerkung{}
+\begin{itemize}
+\item Die Elemente einer semantischen Klasse sind alle Formeln mit der gleichen Wahrheitstabellen
+\item Jede semantische Klasse enthält unendlich viele Formeln\\
+    $(G \equiv \neg \neg G \equiv \neg \neg \neg \neg G \equiv … )$
+\end{itemize}
+
+\definition{}
+\begin{itemize}
+\item Eine Formel $G$ heißt gültig oder Tautologie, falls $f(G) = W$ für jede Interpretation $f$
+\item Eine Formel $G$ heißt erfüllbar, falls es eine Interpretation $f$ gibt mit $f(G) = W$
+\item Eine Formel $G$ heißt nicht erfüllbar, unerfüllbar oder Antilogie, falls $f(G) = F$ für alle Interpretation $f$
+\end{itemize}
+
+\beispiel{}
+$\begin{rcases} A_1 \OR A_1\ g\ddot{u}ltig \\ A_1 \\ \neg A_1 \end{rcases} erf\ddot{u}llbar$\\
+$A_1 \AND \neg A_1$ unerfüllbar\\
+
+\noindent\\
+Ein zentrales Ziel der Vorlesung wird es sein Algorithmen zu entwickeln, die zur Gegebenen Formel $G$ entscheiden, da diese erfüllbar ist.\\
+    
+\noindent\\
+\bemerkung{}
+\begin{enumerate}[i)]
+\item $G$ gültig $\Rightarrow G$ ist er erfüllbar
+\item $G$ ist unerfüllbar $\Leftrightarrow \neg G$ gültig
+\item $G, H$ gültig $\Rightarrow G \equiv H$
+\item $G, H$ nicht erfüllbar $\Rightarrow G \equiv H$
+\end{enumerate}
+
+\noindent
+Wir untersuchen nun Ausdruckskraft der Aussagenlogik:\\
+Gegeben eine Wahrheitstabelle\\
+z. B.\\
+\begin{tabular}{c|c|c|c}
+$A_1$ & $A_2$ & $A_3$ & ?\\
+\hline
+F & F & F & W\\
+F & F & W & F\\
+F & W & F & F\\
+W & F & F & W\\
+F & W & W & F\\
+W & F & W & F\\
+W & W & F & W\\
+W & W & W & F
+\end{tabular}\\
+Gibt es Formel $G$ mit dieser Wahrheitstabelle?\\
+
+\noindent\\
+\lemma{1.2}
+Über eine Menge von $n$ atomaren Formeln gibt es $2^{2^{n}}$ semantische Klassen. Insbesondere gibt es zu jeder Wahrheitstabelle eine Formel mit dieser Wahrheitstabelle.\\
+    
+\beweis{}
+$\rightarrow$ Zeige: Es gibt $2^{2^n}$ Wahrheitstabellen über $n$ atomare Formeln. Die $2^n$ Interpretationen (Lemma 1.1) legen die Wahrheitstabelle bis auf die letzte Spalte fest.\\
+Für jede Zeile gibt es zwei Möglichkeiten für den Eintrag in die letzte Spalte\\
+\noindent\\
+$2 \cdot 2 \cdot … \cdot 2 = 2^{2^n}$ Möglichkeiten\\
+    
+\noindent\\
+$\rightarrow$ Zeige: Zu jeder Wahrheitstabelle gibt es Formel mit dieser Wahrheitstabelle\\
+    
+\noindent\\
+Konstruktion\\
+
+\begin{tabular}{c|c|c|c}
+$A_1$ &  & $A_n$ &  \\
+\hline
+$f_1 F$ &  & $F$ & $W_1$\\
+…   &  &  & … \\
+$f_n W$ & … & $W$ & $W_{2^n}$ \\
+\end{tabular}\\
+\noindent\\
+$W_1, …, W_{2^n} \in \{W, F\}$\\
+    
+\noindent\\
+Seien $i_1, …, i_l$ die Indizes mit $W_{i_j} = W$ für $1 \leq j \leq l$\\
+$G_k = \bigwedge_{m=1}^n H_{k,m}$, $H_{k,m} = \begin{cases} A_m\ falls\ f_{i_k}\ (A_m)=W \\ \neg A_m\ falls\ f_{i_k}\ (A_m)=F \end{cases}$\\
+    
+\noindent\\
+Setz $G = \bigvee_{k=1}^l G_k$\\
+    
+\noindent\\
+Sei $f$ Interpretation\\
+$G(G_k) = W \Leftrightarrow f(H_{2,m}) = W\ für\ m=1, …, m$\\
+$\Leftrightarrow f(f_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = W$\\
+$f(\neg A_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = F$\\
+$\Leftrightarrow f = f_{i,k}$\\
+
+\noindent\\
+$f(G) = W \Leftrightarrow \exists k : f(G_k) = W$\\
+$\Leftrightarrow \exists k: f= f_{i,k}$\\
+$\Rightarrow G$ hat die gegebene Wahrheitstabelle\\
+    
+\beispiel{}\\
+\begin{tabular}{cc|c|c|c}
+ &  & $A_1$ & $A_2$ &   \\
+\hline
+$\rightarrow$ & $f_1$ & F & F & \textcircled{W}\\
+$\rightarrow$ & $f_2$ & W & F & \textcircled{W}\\
+ & $f_3$ & F & W & F\\
+ & $f_4$ & W & W & F\\
+\end{tabular}\\
+(suche Zeilen, die hinten $W$ sind)\\
+
+\noindent
+$i_1 = 1, i_2 = 2, l=2$\\
+$G_1 = \neg A_1 \AND \neg A_2$\\
+$G_2 = A_1 \AND \neg A_2$\\
+$G = G_1 \OR G_2 = (( \neg A_1 \AND \neg A_2) \OR (A_1 \AND \neg A))$\\
+
