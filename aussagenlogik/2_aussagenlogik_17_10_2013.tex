@@ -78,15 +78,15 @@ $K_4 = \{G \in F_1 | G \equiv A_1 \AND \neg A_1\}$\\
 \begin{itemize}
 \item Eine Formel $G$ heißt gültig oder Tautologie, falls $f(G) = W$ für jede Interpretation $f$
 \item Eine Formel $G$ heißt erfüllbar, falls es eine Interpretation $f$ gibt mit $f(G) = W$
-\item Eine Formel $G$ heißt nicht erfüllbar, unerfüllbar oder Antilogie, falls $f(G) = F$ für alle Interpretation $f$
+\item Eine Formel $G$ heißt nicht erfüllbar, unerfüllbar oder Antilogie, falls $f(G) = F$ für alle Interpretationen $f$
 \end{itemize}
 
-\beispiel{}
-$\begin{rcases} A_1 \OR A_1\ g\ddot{u}ltig \\ A_1 \\ \neg A_1 \end{rcases} erf\ddot{u}llbar$\\
+\beispiel{}\\
+$\begin{rcases} A_1 \OR \neg A_1\ g\ddot{u}ltig \\ A_1 \\ \neg A_1 \end{rcases} erf\ddot{u}llbar$\\
 $A_1 \AND \neg A_1$ unerfüllbar\\
 
 \noindent\\
-Ein zentrales Ziel der Vorlesung wird es sein Algorithmen zu entwickeln, die zur Gegebenen Formel $G$ entscheiden, da diese erfüllbar ist.\\
+Ein zentrales Ziel der Vorlesung wird es sein, Algorithmen zu entwickeln, die zur Gegebenen Formel $G$ entscheiden, da diese erfüllbar ist.\\
     
 \noindent\\
 \bemerkung{}
@@ -98,7 +98,7 @@ Ein zentrales Ziel der Vorlesung wird es sein Algorithmen zu entwickeln, die zur
 \end{enumerate}
 
 \noindent
-Wir untersuchen nun Ausdruckskraft der Aussagenlogik:\\
+Wir untersuchen nun die Ausdruckskraft der Aussagenlogik:\\
 Gegeben eine Wahrheitstabelle\\
 z. B.\\
 \begin{tabular}{c|c|c|c}
@@ -115,7 +115,6 @@ W & W & W & F
 \end{tabular}\\
 Gibt es Formel $G$ mit dieser Wahrheitstabelle?\\
 
-\noindent\\
 \lemma{1.2}
 Über eine Menge von $n$ atomaren Formeln gibt es $2^{2^{n}}$ semantische Klassen. Insbesondere gibt es zu jeder Wahrheitstabelle eine Formel mit dieser Wahrheitstabelle.\\
     
@@ -123,7 +122,7 @@ Gibt es Formel $G$ mit dieser Wahrheitstabelle?\\
 $\rightarrow$ Zeige: Es gibt $2^{2^n}$ Wahrheitstabellen über $n$ atomare Formeln. Die $2^n$ Interpretationen (Lemma 1.1) legen die Wahrheitstabelle bis auf die letzte Spalte fest.\\
 Für jede Zeile gibt es zwei Möglichkeiten für den Eintrag in die letzte Spalte\\
 \noindent\\
-$2 \cdot 2 \cdot … \cdot 2 = 2^{2^n}$ Möglichkeiten\\
+$\underbrace{2 \cdot 2 \cdot … \cdot 2}_{2^n} = 2^{2^n}$ Möglichkeiten\\
     
 \noindent\\
 $\rightarrow$ Zeige: Zu jeder Wahrheitstabelle gibt es Formel mit dieser Wahrheitstabelle\\
@@ -134,12 +133,11 @@ Konstruktion\\
 \begin{tabular}{c|c|c|c}
 $A_1$ &  & $A_n$ &  \\
 \hline
-$f_1 F$ &  & $F$ & $W_1$\\
-…   &  &  & … \\
+$f_1 F$ & … & $F$ & $W_1$\\
+\vdots   &  & \vdots & \vdots \\
 $f_n W$ & … & $W$ & $W_{2^n}$ \\
-\end{tabular}\\
-\noindent\\
-$W_1, …, W_{2^n} \in \{W, F\}$\\
+\end{tabular}
+\hspace{1cm}$W_1, …, W_{2^n} \in \{W, F\}$\\
     
 \noindent\\
 Seien $i_1, …, i_l$ die Indizes mit $W_{i_j} = W$ für $1 \leq j \leq l$\\
@@ -150,16 +148,20 @@ Setz $G = \bigvee_{k=1}^l G_k$\\
     
 \noindent\\
 Sei $f$ Interpretation\\
-$G(G_k) = W \Leftrightarrow f(H_{2,m}) = W\ für\ m=1, …, m$\\
-$\Leftrightarrow f(f_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = W$\\
-$f(\neg A_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = F$\\
-$\Leftrightarrow f = f_{i,k}$\\
+\begin{tabbing}
+$G(G_k) = W$ \= $\Leftrightarrow f(H_{2,m}) = W\ für\ m=1, …, m$\\
+\> $\Leftrightarrow f(f_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = W$\\
+\> = $f(\neg A_m) = W\ für\ W\ mit\ f_{i,k}(A_m) = F$\\
+\> $\Leftrightarrow f = f_{i,k}$\\
+\end{tabbing}
 
 \noindent\\
-$f(G) = W \Leftrightarrow \exists k : f(G_k) = W$\\
-$\Leftrightarrow \exists k: f= f_{i,k}$\\
+\begin{tabbing}
+$f(G) = W$ \= $\Leftrightarrow \exists k : f(G_k) = W$\\
+\> $\Leftrightarrow \exists k: f= f_{i,k}$\\
+\end{tabbing}
 $\Rightarrow G$ hat die gegebene Wahrheitstabelle\\
-    
+
 \beispiel{}\\
 \begin{tabular}{cc|c|c|c}
  &  & $A_1$ & $A_2$ &   \\
@@ -173,7 +175,79 @@ $\rightarrow$ & $f_2$ & W & F & \textcircled{W}\\
 
 \noindent
 $i_1 = 1, i_2 = 2, l=2$\\
-$G_1 = \neg A_1 \AND \neg A_2$\\
-$G_2 = A_1 \AND \neg A_2$\\
+$G_1 = (\neg A_1 \AND \neg A_2)$\\
+$G_2 = (A_1 \AND \neg A_2)$\\
 $G = G_1 \OR G_2 = (( \neg A_1 \AND \neg A_2) \OR (A_1 \AND \neg A))$\\
 
+\vspace{1cm}
+\noindent
+Regeln zur semantischen Äquivalenz.
+
+\satz{1.3} Seien $G, H, I$ Formeln der Aussagenlogik\\
+Dann gilt
+\begin{tabbing}
+Idempotenz \hspace{1cm} \= $(G \AND G) \equiv G$\\
+\> $(G \OR H) \equiv (H \OR G)$\\
+%\end{tabbing}
+\\
+%\begin{tabbing}
+Assoziativität \> $((G \AND H) \AND I ) \equiv (G \AND (H \AND I))$\\
+\> $((G \OR H) \OR I) \equiv (G \OR (H \OR I ))$\\
+%\end{tabbing}
+\\
+%\begin{tabbing}
+Distributivität \> $(G \AND ( H \OR I )) \equiv ((G \AND H ) \OR (G \AND I ))$\\
+\> $(G \OR ( H \AND I )) \equiv (( G \OR H ) \AND ( G \OR I ))$\\
+%\end{tabbing}
+\\
+%\begin{tabbing}
+Absorption \> $(G \AND ( G \OR H )) \equiv G$\\
+\> $(G \OR ( G \AND H )) \equiv G$\\
+%\end{tabbing}
+\\
+Doppelnegation \> $\neg \neg G \equiv G$\\
+\\
+%\begin{tabbing}
+deMorgan Regel \> $\neg ( G \AND H ) \equiv \neg G \OR \neg H$\\
+\> $\neg ( G \OR H) \equiv \neg G \AND \neg H$
+\end{tabbing}
+
+\beweis{}
+Beispielhaft Absorption
+
+\begin{tabular}{c|c|c|c}
+$G$ & $H$ & $G \AND ( G \OR H)$ & $G$ \\
+\hline
+F & F & F & F \\
+F & W & F & F \\
+W & F & W & W \\
+W & W & W & W 
+\end{tabular}
+$\Rightarrow (G \AND ( G \OR H )) \equiv G$
+
+\lemma{1.4}
+$G, H, G', H'$ Formeln der Aussagenlogik\\
+und $G \equiv G'$ und $H \equiv H'$\\
+\noindent\\
+$\Rightarrow$\\
+$(G \AND H) \equiv (G' \AND H')$\\
+$(G \OR H) \equiv (G' \OR H')$\\
+$\neg G \equiv \neg G'$
+
+\beweis{}\\
+\begin{tabular}{c|c|c|c|c|c}
+$G$ & $H$ & $G'$ & $H'$ & $G \AND H$ & $G' \AND H'$ \\
+\hline
+F & F & F & F & F & F \\
+F & W & F & W & F & F \\
+W & F & W & F & F & F \\
+W & W & W & W & W & W \\
+\end{tabular}
+$\Rightarrow (G \AND H ) \equiv ( G' \AND H')$\\
+\noindent\\
+andere analog
+
+\satz{1.5}
+Seien $G, H, I$ Formeln der Aussagenlogik und $G \equiv H$ und $G$ ist Teilformel von $I$.\\
+Sei $I'$ eine Formel, die aus $I$ entsteht indem man ein Vorkommen von $G$ durch $H$ ersetzt\\
+Dann $I \equiv I'$
