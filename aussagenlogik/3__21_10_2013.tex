@@ -1,0 +1,161 @@
+\datum{21.10.2013} 
+
+
+\satz{1.5} $G \equiv H$\\
+$I$ mit $G$ Teilformel\\
+$I'$ ersetze ein Vorkommen von $G$ in $I$ durch $H$\\
+$\Rightarrow I \equiv I'$
+
+\beispiel{}\\
+$\begin{rcases}G = \neg ( \neg A_1 \OR A_3)\\
+H = (A_1 \AND \neg A_3) \end{rcases} G \equiv H$\\
+\noindent\\
+$I = ((( \neg A_{2} \OR A_4) \AND ( A_6 \OR \neg ( \neg A_1 \OR A_3))) \AND \neg ( \neg A_1 \OR A_3))$\\
+$I' = ((( \neg A_2 \OR A_4) \AND (A_6 \OR ( A_1 \AND \neg A_3))) \AND \neg ( \neg A_1 \OR A_2))$\\
+
+\beweis{}
+Induktion über die Länge  $l = \#$ zeichen von $I$\\
+I.A.: $l$ = Länge von $G$\\
+$\Rightarrow I = G$ und $I' = H$\\
+$\Rightarrow I = G \equiv H = I'$\\
+\noindent\\
+I.V.: Die Aussage gilt für alle Formeln der Länge $\leq l$\\
+I.S.: Sei $I$ Formel der Länge $l+1$, die $G$ als Teilformel enthält\\
+\noindent\\
+\underline{1. Fall}\\
+$I = (I_1 \AND I_2)$ mit Formeln $I_1$ und $I_2$ der Länge $\leq l$
+
+\begin{enumerate}
+\item[i)] $I' = (I'_1 \AND I_2)$\\
+$I'_1$ entsteht aus $I_1$ durch ersetzen der Teilformel $G$ in $I$, durch $H$\\
+Sei Länge von $H_1 \leq l$ folgt nach I.V\\
+$I_1 = = I'_1$\\
+Also\\
+$\begin{rcases} I = (I_1 \AND I_2)$, $I'=(I'_1 \AND I_2) \\
+I_1 \equiv I'_1 \\
+I_2 = I_2 \end{rcases} I' \equiv I$\\
+
+\item[ii)] $I' = I_1 \AND I'_2$\\
+$I'_2$ entsteht aus $I_2$ durch ersetzen der Teilformel $G$ in $I_2$ durch $H$\\
+weiter analog zu (i)
+\end{enumerate}
+
+\noindent
+\underline{2. Fall}\\
+$I = (I_1 \OR I_2)$\\
+analog zu 1. Fall\\
+
+\noindent
+\underline{3. Fall}\\
+$I_1 = \neg I_1$ ist Formel $I_1$ der länge $\leq l$\\
+$\rightarrow I' = \neg I'_1$ und $I'_1$ entsteht aus $I_1$ durch ersetzen der Teilformel $G$ durch $H$\\
+
+\noindent
+Nach I.V. \hspace{1cm} $I_1 \equiv I'_1$\\
+$\Rightarrow^{Lemma\ 1.4}$ (iii) $I = \neg I_1 \equiv \neg I'_1 = I'$ $\Box$\\
+$\rightarrow$ Der Beweis von Satz 1.5 ist ein erstes Beispiel des Beweisprinzips „Induktion über Formelaufbau“\\
+(„Strukturelle Induktion“)
+
+\behauptung{„Aussage über Formeln“}
+
+\beweis{}
+Induktion über Formelaufbau\\
+I.A.: Aussage für Kürzest mögliche Formel\\
+I.S.: Die Aussage gilt für die 3 Möglichkeiten\\
+für $(G \AND H)$, $(G \OR H)$, $\neg G$\\
+falls die Aussage für $G$ und $H$ gilt.
+
+\definition{}
+Sei $\Sigma$ eine Menge von Formeln\\
+$\Sigma$ heißt erfüllbar, falls es eine Interpretation $f$ gibt mit $f(G) = W\ \forall\ G \in \Sigma$\\
+so ein $f$ heißt Modell $\Sigma$
+
+\noindent
+$\Sigma$ heißt unerfüllbar oder nicht erfüllbar, falls es eine Interpretation $f$ gibt mit $f(G) = W$
+
+\noindent
+für alle $G \in \Sigma$\\
+
+\noindent
+\underline{Bsp.}\\
+$\Sigma = \{A_1, A_1 \AND A_2, A_1 \AND A_2 \AND A_3, … \}$\\
+$= \{A_1 \AND … \AND A \ |\ n=1 \}$\\
+
+\noindent
+erfüllbar $f(A_i) = W$ für $i=1$ ist einziges Modell\\
+$\Sigma = \{A_1 \AND A_2, \neg ( \neg A_1 \OR A_2) \}$ nicht erfüllbar\\
+
+\beweis{}
+\begin{enumerate}
+\item[i)] $G$ erfüllbar $\Leftrightarrow \{G\}$ erfüllbar
+\item[ii)] $\Sigma$ erfüllbar $\Rightarrow G$ erfüllbar für alle $G \in \Sigma$
+\item[iii)] $G$ erfüllbar für alle $G \in \Sigma \not \Rightarrow \Sigma$ erfüllbar
+\end{enumerate}
+$\Sigma = \{A_1, \neg A_1 \}$ unerfüllbar\\
+\noindent\\
+$A_1, \neg A_1$ erfüllbar wenn $A_1 = W$ bzw. $F$
+
+\lemma{1.6}
+Sei $\Sigma = \{G_1, G_n \}$ endlich, dann folgt\\
+$\Sigma$ erfüllbar $\leftrightarrow (G_1 \AND … \AND G_n)$ erfüllbar
+
+\beweis{}
+$\Sigma$ erfüllbar $\Leftrightarrow$ Es gibt Interpretation $f$ mit $f(G_1) = W$, $i=1, …, n$\\
+$\Leftrightarrow$ Es gibt Interpretation $f$ mit $f(G_1 \AND … \AND G_n) = W$\\
+$\Leftrightarrow ( G_1 \AND … \AND G_n)$ erfüllbar $\Box$
+
+\definition{}
+Eine Formelmenge $\Sigma$ impliziert semantisch eine Formel $H$, falls für jedes Modell $f$ von $\Sigma$ gilt $f(H) = W$; d.h. $f$ ist auch Modell von $\{H\}$. Wir schreiben $\Sigma \models H$. Ist $\Sigma = \{G\}$ so schreiben wir auch $G \models H $ für $G$ impliziert semantisch $H$.
+
+\beispiel{}
+$A_1 \AND A_2 \models A_1 \OR A_2$\\
+$f(A_1 \AND A_2) = W \Rightarrow f(A_1) = f(A_2) = W$\\
+$\Rightarrow f(A_1 \OR A_2) = W$\\
+$A_1 \OR A_2 \not \models A_1 \AND A_2$\\
+
+\noindent
+für $f(A_1) = W,\ f(A_2) = F$ gilt $f(A_1 \OR A_2) = W$\\
+aber $f(A_1 \AND A_2) = F$\\
+falls $G \models H$ und $f(G) = F$ muss nicht $f(H) = f$ gelten.\\
+$(A_1 \AND A_2) \models (A_1 \OR A_2)$\\
+für $f(A_1) = W,\ f(A_2)=F$ gilt $f(A_1 \AND A_2) = F$\\
+aber $f(A_1 \OR A_2 ) = W$
+
+\bemerkung{}
+$G, H$ Formeln\\
+$G \equiv H \Leftrightarrow ( G \models H)$ und $(H \models G)$\\
+
+\beweis{}
+$G \equiv H$, für jede Interpretation $f$ gilt $f(H) = f(G)$\\
+$\Leftrightarrow$ für jede Interpretation $f$ gilt\\
+$f(G) = W \Leftrightarrow f(H) = W$\\
+$\Leftrightarrow G \models H$ und $H \models G$ $\Box$
+
+\beispiel{}
+Es gibt Formel $G, H$ mit $G \not \models H, H \not \models G$\\
+$G = A_1$, $H=\neg A_1$
+
+\satz{1.7} \textbf{Gaig'scher Interpolationssatz}\\
+Seien $G$ und $H$ Formel mit $G \models H$\\
+Dann gilt mindestens eine der folgenden 3 Aussagen:
+\begin{itemize}
+\item[i)] $H$ ist gültig
+\item[ii)] $G$ ist unerfüllbar
+\item[iii)] Es gibt eine Formel $I$ mit $G \models I$, $I \models H$
+\end{itemize}
+und jede atomare Teilformel von $I$ ist atomare Teilformel von $G$ und $H$.
+
+\beispiel{}
+$G = (A_1 \AND A_2)$, $H = (A_2 \OR A_3)$\\
+$G \models I$ \hspace{1cm} $I \models H$ \hspace{1cm} für $I= A_2$\\
+$(A_1 \AND A_2) \models A_2$ \hspace{1cm} $A_2 \models (A-2 \OR A_3)$
+
+\beweis{}
+Es genügt zu Zeigen\\
+$G \models H$ und $H$ nicht gültig mit $G$ erfüllbar $\Rightarrow$ (iii)\\
+
+\noindent
+Induktion über die Anzahl der atomaren Teilformeln von $G$, die nicht in $H$ vorkommen.\\
+I.A: $n=0$ \hspace{1cm} Können $I = G$ wählen\\
+$G \models I = G$ \hspace{1cm} $G = I \models H$\\
+
