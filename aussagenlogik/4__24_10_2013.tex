@@ -1,0 +1,165 @@
+\datum{24.10.2013}
+
+
+\satz{1.7} \textbf(Graig'scher Interpolationssatz)\\
+Seien $G,H$ Formeln mit $G \models H$\\
+Dann gilt mindestens eine der folgeden Aussagen:\\
+\begin{enumerate}
+\item[i)] $H$ gültig
+\item[ii)] $G$ unerfüllbar
+\item[iii)] Es gibt eie Formel $I$ mit den Eigenschaften $G \models I$, $I \models H$\\
+und jede atomare Teilformel von $I$ ist Teilformel von $G$ und $H$.
+\end{enumerate}
+
+\beweis{}
+Es genügt zu zeigen:\\
+%$\begin{rcases}$
+\begin{itemize}
+\item $H$ nicht gültig
+\item $G$ erfüllbar
+\item $G \models H$
+\end{itemize}
+%$\end{rcases}$
+$\Rightarrow$ iii)\\
+
+\noindent
+Induktion über die Anzahl der atomaren Teilformeln von $G$, die nicht in $H$ enthalten sind.\\
+
+\noindent
+I.A.: Sei $n=0$. Dann ist jede atomare Teilformel von $G$ in $H$ enthalten.\\
+Wähle $I=G$, dann enthält $I$ nur atomare Teilformeln, die in $G$ und $H$ enthalten sind und $G \models I$ und $I \models H$.\\
+
+\noindent
+I.V.:
+\begin{itemize}
+\item $G \models H$ 
+\item $H$ nicht gültig
+\item $G$ erfüllbar
+\item Die Anzahl der atomaren Teilformeln von $G$, die nicht in $H$ enthalten sind, ist $n$.
+\end{itemize}
+$\Rightarrow$ iii)\\
+
+\noindent
+I.S.: $(n \rightarrow n+1)$\\
+\begin{itemize}
+\item $G \models H$
+\item $H$ nicht gültig
+\item $G$ erfüllbar
+\item Die Anzahl der atomaren Formeln von $G$, die nicht in $H$ enthalten sind, ist $n+1$
+\end{itemize}
+\noindent
+Sei $A_i$ eine atomare Formel, die in $G$ aber nicht in $H$ enthalten ist.\\
+Sei $G_W$/$G_F$ die Formel, die aus $G$ entsteht, wenn jedes Vorkommen von $A_i$ ersetzt wird durch eine gültige/ungültige Formel, die nur atomare Formeln von $G$ und $H$ verwendet.\\
+
+\noindent
+Setze $G' := (G_W \OR G_F)$
+\begin{enumerate}
+\item[1)] Es gibt eine atomare Formel, die in $G$ und in $H$ enthalten ist.\\
+(d.h. $G'$ ist wohldefiniert)\\
+\underline{Beweis:} Angenommen $G$ und $H$ besitzen keine gemeinsame atomare Formel.\\
+Da $G$ erfüllbar ist, gibt es eine Interpretation $f_G$ der atomaren Teilformeln von $G$ mit $f_G (G) = W$\\
+Da $H$ nicht gültig ist, gibt es eine Interpretation $f_H$ der atomaren Teilformeln von $H$ mit $f_H (H) = F$\\
+Da die Menge der atomaren Teilformeln von $G$ disjunkt zur Menge der atomaren Teilformeln von $H$ ist, gibt es eine gemeinsame Erweiterung $f$ von $f_G$ und $f_H$\\
+Damit ist $f$ eine Interpretation der atomaren Teilformeln von $G$ und $H$ mit:
+\begin{itemize}
+\item $f(G) = f_G(G) = W$
+\item $f(H) = f_H(H) = F$\\ \widerspruch zu $G \models H$
+\end{itemize}
+$\Rightarrow$ Ann. falsch $\Rightarrow$ Beh.
+
+\item[2)] \underline{Beh:} $G' \models H$ \\
+\underline{Beweis:} Es genügt zu zeigen:
+\begin{enumerate}
+\item[a)] $G_W \models H$
+\item[b)] $G_F \models H$
+\end{enumerate}
+
+zu a)\\
+Sei $f$ eine Interpretation der atomaren Teilformeln $G_W$ und $H$ mit $f(G_W) = W$.\\
+Erweitere $f$ zu einer Interpretation $f'$ der atomaren Formeln von $G$ und $H$ durch\\
+$f'(A_j) = \begin{cases} f(A_j),\ falls\ A_j \neq A_i \\ W,\ falls\ A_j = A_i \end{cases}$\\
+$\Rightarrow f'(G) = f(G_W) = W$\\
+$\Rightarrow^{(G \models H)} f(H) = f'(H) = W$\\
+$\Rightarrow G_W \models H$\\
+
+zu b)\\
+Sei $f$ eine Interpretation von $G_F$ und $H$ mit $f(G_F) = W$.\\
+Erweitere $f$ zu einer Interpretation $f'$ von $G$ und $H$ durch\\
+$f'(A_j) = \begin{cases} f(A_j),\ falls\ A_j \neq A_i \\ F,\ falls\ A_j = A_i \end{cases}$\\
+$\Rightarrow^{(G \models H)} f(H) = f'(H) = W$\\
+$\Rightarrow G_F \models H$
+
+\item[3)] \underline{Beh:} Die Anzahl der atomaren Formeln in $G'$, die nicht in $H$ enthalten sind ist $n$.\\
+\underline{Beweis:} klar
+
+\item[4)] \underline{Beh:} $G'$ ist erfüllbar.\\
+\underline{Beweis:}\\
+Sei $f$ eine Interpretation der atomaren Formeln in $G$ mit $f(G) = W$.\\
+($G$ erfüllbar)\\
+Entweder $f(A_i) = W$, d.h. $f(G_W) = W$\\
+oder $f(A_i) = F$, d.h. $f(G_F) = W$\\
+Somit ist $f(G') = f(G_W \OR G_F) = W$
+
+\item[5)] \underline{Beh:} Es gibt ein $I$, wie in der Beh. des Satzes.\\
+\underline{Beweis:} Nach I.V. gibt es eine Formel $I$, welche nur die atomare Formeln von $G'$ und $H$ verwendet mit $G' \models I$ und $I \models H$.
+
+\begin{itemize}
+\item $I$ verwendet nur die atomaren Formeln von $G$ und $H$
+\item $I \models H$ 
+\item zz: $G \models I$\\
+Sei $f$ eine Interpretation der atomaren Aussagen von $G$ und $H$ mit $f(G) = W$\\
+Dann gilt entweder\\
+$f(A_i) = W$ und $f(G_W) = W$\\
+oder\\
+$f(A_i) = F$ und $f(G_F) = W$\\
+Somit folgt $f(G_W \OR G_F) = W$\\
+$\Rightarrow^{(G' \models H)} f(I) = W$\\
+$\Rightarrow G \models H$ $\Box$
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Normalformen}
+
+\beispiel{}
+$\rightarrow (A_1 \OR \neg A_2 ) \equiv ( \neg A_1 \AND \neg \neg A_2) \equiv ( \neg A_1 \AND A_2)$\\
+
+\definition{}
+Ein \underline{Literal} ist eine atomare Formel oder deren Negation. \\
+
+\noindent
+Sprechweisen:\\
+$A_i \rightarrow$ atomare Formel $\rightarrow$ positives Literal\\
+$\neg A_i \rightarrow$ Negation einer atomaren Formel $\rightarrow$ negatives Literal\\
+
+\definition{} Sei $\{A_1, …, A_n\}$ eine Menge von atomaren Formeln\\
+
+\noindent
+Ein \underline{Minterm} über $\{A_1, …, A_n\}$ ist eine Konkunktion \\
+$L_1 \AND … \AND L_n$ von Literalen $L_i = \begin{cases} A_i \\ \neg A_i \end{cases} , 1 \leq i \leq n$\\
+Ein \underline{Maxterm} über $\{A_1, …, A_n\}$ ist eine Disjunktion\\
+$L_1 \OR … \OR L_n$ von Literalen $L_i = \begin{cases} A_i \\ \neg A_i \end{cases} , 1 \leq i \leq n$\\
+
+\beispiel{}\\
+Sei $\{A_1\}$ Menge von atomaren Formeln\\
+Minterme: $A_1$, $\neg A_1$\\
+Maxterme: $A_1$, $\neg A_1$\\
+
+\noindent
+Sei $\{ A_1, A_2 \}$ Menge von atomaren Formeln\\
+Minterme: $(A_1 \AND A_2)$, $(A_1 \AND \neg A_2)$, $(\neg A_1 \AND A_2)$, $\neg ( A_1 \AND \neg A_2)$\\
+Maxterme: analog $( \OR )$, $( \OR )$, $( \OR )$, $( \OR )$\\
+
+\lemma{2.1}
+Über $\{A_1, …, A_2\}$ gibt es \\
+genau $2^n$ Minterme und\\
+genau $2^n$ Maxterme.
+
+\beweis{}
+Für jedes Literal $L_i$ gibt es (siehe Def.) 2 Möglichkeiten.\\
+Also insgesamt $\underbrace{2 \cdot … \cdot 2}_{n-mal} = 2^n$ Möglichkeiten\\
+
+\bemerkung{}
+Da $2^n < 2^{2^n}$ für $n \geq 1$ gibt es nicht in jeder semantischen Klasse einen Minterm bzw. Maxterm
+
