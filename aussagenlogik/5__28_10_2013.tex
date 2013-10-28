@@ -1,0 +1,181 @@
+\datum{28.10.2013}
+
+
+\noindent
+Literale $A_i, \neg A_i$\\
+Minterme $L_1 \AND … \AND L_n, L_i = A_i$ oder $\neg A_i$\\
+Maxterme $L_1 \OR … \OR L_n, L_i = A_i$ oder $ \neg A_i$\\
+
+\noindent
+$2^n$ Minterme, $2^n$ Maxterme über $A_1, …, A_n$\\
+$2^n < 2^{2^n} = \# semantische\ Klassen$\\
+\noindent\\
+Trotzdem wollen wir die semantischen Klassen charakterisieren, in denen MInterme Maxterme liegen.\\
+
+\lemma{2.2}\\
+Sei $L_1, …, L_n$ Literale mit $L_i = A_i$ oder $L_i = \neg A_i$\\
+für $1 \leq i \leq n$ und $f: \{A_1, …, A_n\} \rightarrow \{W, F\}$ eine Interpretation.\\
+Dann gilt\\
+$f(L_1 \AND … \AND L_n) = W \leftrightarrow f(A_i) = \begin{cases} W\ f\ddot{u}r\ L_i = A_i \\ F\ f\ddot{u}r\ L_i = \neg A_i \end{cases}$\\
+$f(L_1 \OR … \OR L_n) = F \leftrightarrow f(A_i) = \begin{cases} F\ f\ddot{u}r\ L_i = A_i \\ W\ f\ddot{u}r\ L_i = \neg A_i \end{cases}$\\
+
+\beweis{} Nachrechnung
+
+\lemma{2.3}
+\begin{enumerate}
+\item[(i)] Zu einer Wahrheitstabelle gibt es einen Minterm mit dieser Wahrheitstabelle \\
+$\Leftrightarrow$ Nur für eine einzige Interpretation steht W in der letzten Spalte 
+
+\item[(ii)] Zu einer Wahrheitstabelle gibt es einen Maxterm mit dieser Wahrheitstabelle \\
+$\Leftrightarrow$ Nur für eine einzige Interpretation steht F in der letzten Spalte
+\end{enumerate}
+
+\beweis{}\\
+„$\Rightarrow$“ Folgt für (i) und (ii) aus Lemma 2.2\\
+„$\Leftarrow$“ 
+\begin{enumerate}
+\item[(i)] Setzten $L_i = \begin{cases} A_i\ f\ddot{u}r\ f(A_i) = W \\ \neg A_i\ f\ddot{u}r\ f(A_i) = F \end{cases}$\\
+für die Interpretation $f$, für die W in der letzten Spalte steht.\\
+Dann gilt für beliebige Interpretation $g$ nach Lemma 2.2 \\
+$g(L_1 \OR … \OR L_n) = W \Leftrightarrow g(A_i) = \begin{cases} W\ f\ddot{u}r\ L_i = A_i \\ F\ f\ddot{u}r\ L_i = \neg A_i \end{cases}$\\
+$\Leftrightarrow f = g$\\
+$\Rightarrow$ Der Minterm $L_1 \AND … \AND L_n$ hat die gegebene Wahrheitstabelle
+
+\item[(ii)] Setzen $L_1 = \begin{cases} A_i\ f\ddot{u}r\ f(A_i) = F \\ \neg A_i\ f\ddot{u}r\ f(A_i) = W \end{cases}$\\
+für die Interpretation $f$, für die F in der letzten Spalte steht.\\
+Dann gilt für beliebige Interpretationen $g$ nach Lemma 2.2\\
+$g(L_1 \OR … \OR L_n) = F \Leftrightarrow g(A_i) = \begin{cases} F\ f\ddot{u}r\ L_i = A_i \\ W\ f\ddot{u}r\ L_i = \neg A_i \end{cases}$\\
+$\Leftrightarrow g = f$\\
+$\Rightarrow$ Der Maxterm $L_1 \OR … \OR$ hat die gegebene Wahrheitstabelle $\Box$
+
+\end{enumerate}
+
+\beispiel{}\\
+\begin{tabular}{c|c|c}
+$A_1$ & $A_2$ &  \\
+\hline
+F & F & F \\
+F & W & W \\
+W & F & W \\
+W & W & W \\
+\end{tabular}\\
+Maxterm $A_1 \OR A_2 $\\
+Minterm existiert nicht
+
+\definition{}\\
+Eine Formel $G$ über $\{A_1, …, A_n\}$ heißt
+\begin{enumerate}
+\item[(i)] in disjunktiver Normalform (DNF)\\
+falls $G$ eine Disjunktion von Mintermen ist\\
+$G = \bigvee_{i=1}^k (L_{i1} \AND … \AND L_{in})$\\
+$L_{ij} = \begin{cases} A_j \\ \neg A_j \end{cases} 1 \leq j \leq n$\\
+
+\item[(ii)] in konjunktiver Normalform (KNF)\\
+falls $G$ eine Konjunktion von Maxtermen ist\\
+$G = \bigwedge_{i=1}^k (L_{in} \OR … \OR L_{in})$\\
+$L_{ij} = \begin{cases} A_j \\ \neg A_j \end{cases}$ $1 \leq j \leq n$
+\end{enumerate}
+
+\bemerkung{}
+\begin{itemize}
+\item[$\rightarrow$] Dieser Begriff von KNF, DNF stimmt nicht genau mit dem Begriff aus dem Buch von Schöning überein. Dessen Definition wid bei uns als VDNF, VKNF auftauchen.
+\item[$\rightarrow$] Für DNF $\bigvee_{i=1}^k ( \bigwedge_{j=1}^n L_{ij} )$ und \\
+KNF $\bigwedge_{i=1}^k ( \bigvee_{j=1}^n L_{ij})$\\
+erlauben wir $k=0 \leftarrow$ leere DNF, leere KNF
+\end{itemize}
+\noindent
+Dies sind „keine“ Formeln im strengen Sinn\\
+Werden sie aber für Satz 2.4 brauchen\\
+Wir setzen\\
+die DNF für $k=0$ als unerfüllbar\\
+die KNF für $k=0$ als gültig\\
+
+\satz{2.4}
+Sei $G$ eine Formel über $\{ A_1, …, A_n\}$\\
+Dann gibt es Formeln $G_D$ und $G_K$ mit
+\begin{itemize}
+\item $G \equiv G_D \equiv G_K$
+\item $G_D$ is in DNF\\
+$G_K$ ist in KNF
+\end{itemize}
+
+
+\beweis{}
+Konstruktion von $G_D$ 
+\begin{enumerate}
+\item[(i)] Seien $f_1, …, f_k$ die Interpretationen mit $f_i(G) = W$ \hspace{.5cm} $1 \leq i \leq k$
+\item[(ii)] Für $1 \leq i \leq k$ konstruiere Minterm $L_{i1} \AND … \AND L_{in}$\\
+so dass $f(L_{i1} \AND … \AND L_{in}) = W \Leftrightarrow f = f_i$\\
+(Benutze Lemma 2.3)
+\item[(iii)] Setze\\
+$G_D = \bigvee_{i=1}^k (L_{i1} \AND … \AND L_{in})$ in DNF nach Konstruktion\\
+Sei $f$ Interpretation\\
+$f(G_D) = W \Leftrightarrow$ Es gibt $1 \leq i \leq k$ mit $f(L_{i1} \AND … \AND L_{in}) = W$\\
+$\leftrightarrow$ Es gibt $1 \leq i \leq k$ gilt mit $f(A_j) = \begin{cases} W\ f\ddot{u}r\ L_{ij}=A_j \\ F\ f\ddot{u}r\ L_{ij}=\neg A_j \end{cases}$\\
+$\Leftrightarrow$ Es gibt $1 \leq i \leq k$ mit $f = f_i$\\
+$\Leftrightarrow f(G) = W$\\
+$\Rightarrow G \equiv G_D$\\
+\end{enumerate}
+\noindent
+
+Konstruktion von $G_K$:
+\begin{enumerate}
+\item[(i)] Seien $f_1, …, f_k$ die Interpretationen mit $f_i(G) = F$ \hspace{.5cm} $1 \leq i \leq k$
+\item[(ii)] Für $1 \leq i \leq k$ konstruiere Maxterm $L_{i1} \OR … \OR L_{in}$\\
+so dass $f(L_{in} \OR … \OR L_{in}) = F \Leftrightarrow f = f_i$\\
+(Benutze Lemma 2.3)
+\item[(iii)] Setze\\
+$G_K = \bigwedge_{i=1}^k ( L_{i1} \OR … \OR L_{in})$ in KNF nach Konstruktion\\
+Sei $f$ eine Interpretation:\\
+$f(G_K) = F \Leftrightarrow$ Es gibt $1 \leq i \leq k$ mit $f(L_{i1} \OR … \OR L_{in}) = F$\\
+$\Leftrightarrow^{2.3}$ Es gibt $1 \leq i \leq k$ mit $f(A_j) = \begin{cases} F\ f\ddot{u}r\ L_{ij}= A_j \\ W\ f\ddot{u}r\ L_{ij}= \neg A_j \end{cases}$\\
+$\Leftrightarrow$ Es gibt $1 \leq i \leq k$ mit $f = f_i$\\
+$\Leftrightarrow f(G) = F$\\
+$\Rightarrow G \equiv G_K$ $\Box$
+\end{enumerate}
+
+\beispiel{}
+$G = A_1 \OR A_2$\\
+\begin{tabular}{lc|c|c}
+  & $A_1$ & $A_2$ &  \\
+\hline
+ & F & F & F \\
+$f_1=$ & F & W & W \\
+$f_2=$ & W & F & W \\
+$f_3=$ & W & W & W \\
+\end{tabular}\\
+\noindent\\
+$f_1 \leftrightarrow \neg A_1 \AND A_2$\\
+$f_2 \leftrightarrow A_1 \AND \neg A_2$\\
+$f_3 \leftrightarrow A_1 \AND A_2$\\
+$G_D = ( \neg A_1 \AND A_2 ) \OR (A_1 \neg A_2) \OR ( A_1 \AND A_2)$\\
+\noindent\\
+Für KNF\\
+\begin{tabular}{lc|c|c}
+  & $A_1$ & $A_2$ &  \\
+\hline
+$f_1=$ & F & F & F \\
+ & W & F & W \\
+ & F & W & W \\
+ & W & W & W \\
+\end{tabular}
+
+\folgerung{2.5}
+Bis auf die Reihenfolge der Minterme und Maxterme und das Setzen der Klammern in einer vollständigen Klammerung gibt es in jeder semantischen Klasse eindeutig bestimmte Formeln in DNF und in KNF\\
+
+\noindent\\
+Erfüllbarkeitsproblem:\\
+EIngabe Formel $G$:\\
+Ausgabe: $G$ erfüllbar oder $G$ unerfüllbar \\
+$\rightarrow$ Bruteforce: Feste alle $2^n$ Interpretationen in der $n$ atomaren Formeln aus $G$ \\
+$\leadsto$ In worst case $2^n$ Schritte = Laufzeit.\\
+
+\noindent\\
+Sei $G$ in DNF\\
+Ist $G$ nicht die leere DNF, so ist $G$ erfüllbar.\\
+$\leadsto$ Erfüllbarkeit in konstanter Zeit entscheidbar\\
+
+\noindent
+Sei $G$ in KNF\\
+Hat $G \leq 2^n -1$ Maxterme, so ist $G$ erfüllbar.\\
+$\leadsto$ Erfüllbarkeit in linearer Zeit entscheidbar.
