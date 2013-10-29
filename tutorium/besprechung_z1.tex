@@ -1,0 +1,111 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\title{Besprechung Zettel 1}
+\subtitle{Tutorium vom 24.10.2013}
+\author{Mitschrift aus dem Tutorium (Jens Kosiol), vermutlich mit Fehlern}
+\maketitle
+
+\section*{Aufgabe 2}
+
+$A_1, A_2$ atomar\\
+$G = (G_1 \vee G_2 )$ bzw. $G = (G_1 \wedge G_2)$ (kein $\neg$)\\
+$n = 3$\\
+$(A_1 \wedge (( )))$\\
+$(( ) \wedge ( ))$\\
+$((( )) \wedge A ) $\\
+$a_n = 2 \sum_{i=0}^{n-1} a_1 \cdot a_{n-1-i} , n>0$\\
+$a_0 = 2$\\
+$a_1 = 2 \cdot \sum_{i=0}^0 a_1 \cdot a_{n-1-i} = 2 \cdot a_0 \cdot a_0 = 2^3$\\
+$a_2 = 2 \sum_{i=0}^1 a_1 \cdot a_{n-1-i} = 2(a_0 \cdot a_1 + a_1 \cdot a_6) = 2(2^4 + 2^4) = 2^6$\\
+$a_3 = 2^9 + 2^7 = 640$
+
+\section*{Aufgabe 3}
+
+\subsection*{a)}
+$F_1 = (A_1 \wedge A_2)$\\
+$\equiv^{1.4} \neg \neg (A_1 \wedge A_2)$\\
+$\equiv^{1.4, 1.5} \neg ( \neg A_1 \vee \neg A_2)$\\
+$F_2, F_3$ bereits klar!
+
+\subsection*{b)}
+
+$(A_1 \wedge A_2)$\\
+$\equiv \neg \neg (A_1 \wedge A_2)$\\
+$\equiv \neg ( \neg A_1 \vee \neg A_2)$\\
+$\equiv^{Def.} \neg (A_1 \rightarrow A_2)$
+
+\subsection*{c)}
+
+$F_1 = (A_1 \wedge A_2)$\\
+$F_2 = (A_1 \vee A_2)$\\
+$\equiv (\neg \neg (A_1 \vee A_2)$\\
+$\equiv^{1.4, 1.5} \neg ( \neg A_1 \wedge \neg A_2)$\\
+$F_3$ klar\\
+$F_2 = (A_1 \vee A_2)$\\
+$\equiv^{1.4, 1.5} ( \neg \neg A_1 \vee A_2)$\\
+$=^{Def} (\neg A_1 \rightarrow A_2)$\\
+
+
+\section*{Aufgabe 4}
+
+\subsection*{a)}
+
+Beh: In jeder semantischen Klasse liegt eine Formel, welche nur $\wedge$ und $\vee$ benutzt.\\
+zz: $G$ Formel $\Rightarrow \exists$ Formel $G'$, sodass $G \equiv G'$ und $G'$ verwendet nur $\wedge$ und $\neg$\\
+
+\noindent\\
+I.A: $G$ atomar $\Rightarrow$ klar\\
+I.S: 3 Fälle
+\begin{enumerate}
+\item[1)] $G = (G_1 \wedge G_2 ) $\\
+nach I.V. $\exists G'_1, G'_2$\\
+mit $G_1 \equiv G_1$ und $G'_2 \equiv G_2$ und $G'_1, G'_2$\\
+verwenden nur $\wedge$ und $\vee$\\
+$\Rightarrow G \equiv^{1.5} (G'_1 \wedge G'_2)$ gilt
+
+\item[2)] $G = \neg G_1$\\
+nach I.V. $\exists G'_1$ mit\\
+$G'_1 \equiv G_1$ und $G'_1$ verwendet nur $\wedge$ und $\vee$ gilt
+
+\item[3)] $G = (G_1 \vee G_2)$\\
+nach I.V. $\exists G'_1, G'_2$ mit $G'_1 \equiv G_1, G'_2 \equiv G_2$\\
+und $G'_1, G'_2$ verwenden nur $\wedge, \neg$\\
+$\Rightarrow G \equiv^{1.5} (G'_1 \vee G'_2)$\\
+$\equiv \neg ( \neg G'_1 \wedge \neg G'_2$
+\end{enumerate}
+
+\subsection*{b)}
+
+Für echte Teilformeln von $G$ gilt die Aussage $G = (A_1 \vee \neg A_1)$\\
+
+\noindent
+Beh: In semantischer Klasse von $G$ liegt keine Formel, die nur $\wedge$ und $\vee$ benutzt.\\
+Sei $G'$ Formel, die nur $\wedge$ und $\vee$ benutzt, $f$ zu $G$ und $G'$ passende Interpretation mit\\
+$f(A) = F$ für alle atomaren $A$, die in $G$ auftreten.\\
+Es gilt\\
+$f(G) = W$\\
+zz $f(G') = F$\\
+
+\noindent
+IV: Für echte Teilformeln von $G$ gilt $f(H) = F$\\
+IA: $G'$ atomar\\
+$\Rightarrow f(G') = F$\\
+IS: 2 Fälle
+\begin{enumerate}
+\item[1)] $G' = (G_1 \wedge G_2)$\\
+Nach IV $f(G_1) = f(G_2) = F$\\
+$\Rightarrow f(G_1 \wedge G_2) = F$\\
+
+\item[2)] $G' = (G_1 \vee G_2)$\\
+Nach IV: $f(G_1) = f(G_2) = F$\\
+$\Rightarrow f(G_1 \vee G_2) = F$\\
+\end{enumerate}
+
+\end{document}
