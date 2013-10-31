@@ -1,0 +1,166 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\title{Besprechung Zettel 2}
+\subtitle{Tutorium vom 31.10.2013}
+\author{Mitschrift aus dem Tutorium (Jens Kosiol), vermutlich mit Fehlern}
+\maketitle
+
+\section*{Aufgabe 1}
+
+$G$, $H$ Formeln\\
+zz: $G \equiv H \Leftrightarrow (G \leftrightarrow H)$ gültig.\\
+$(G \leftrightarrow H)$ gültig. $\Leftrightarrow$ $(G \rightarrow H)$ und $(H \rightarrow G)$ gültig.\\
+
+\begin{tabular}{c|c|c|c}
+$G$ & $H$ & $G \rightarrow H$ & $H \rightarrow G$ \\
+\hline
+F & F & W & W \\
+F & W & W & F \\
+W & F & F & W \\
+W & W & W & W \\
+\end{tabular}\\
+
+\noindent\\
+Die Hinrichtung „$\Rightarrow$“:\\
+$G \equiv H$\\
+$\Rightarrow (G \rightarrow H), (H \rightarrow G)$ gültig\\
+
+\noindent\\
+Die Rückrichtung „$\Leftarrow$“:\\
+$(G \rightarrow H)$\\
+$\Rightarrow f(G) = f(H)$\\
+$\Leftrightarrow G \equiv H$
+
+\newpage
+
+\section*{Aufgabe 2}
+
+Beh.: $G$ enhält keine Negation $\Rightarrow$ $G$ nicht gültig, aber erfüllbar\\
+Bew: Seien $f_W$ und $f_F$ zu $G$ passende Interpretationen mit $f_W(A_i) = W, f_F(A_i) = F$\\
+$\forall i \in \{1, …, n\}$\\
+
+\noindent
+Wir zeigen $F_W (G) = W, f_F (G) = F$ $\forall G$\\
+I.A: Sei $A_i$ atomar, dann gilt:\\
+$f_W (A_i) = W, f_F (A_i) = F\ \forall i \in \{1, …, n\}$\\
+I.S:
+\begin{enumerate}
+\item[1. Fall] $G = (G_1 \vee G_2 )$\\
+Nach I.V. gilt\\
+$f_W(G_1) = W = f(G_2)$\\
+$f_F(G_1) = F = f_F(G_2)$\\
+Damit gilt\\
+$f_W(G) = f_W(G_1 \vee G_2) = W$\\
+$f_F(G) = f_F ( G_1 \vee G_2 ) = F$
+
+\item[2. Fall] $G = (G_1 \wedge G_2)$\\
+Nach I.V. gilt\\
+$f_W (G_1) = f_W (G_1) = W$\\
+$f_F (G_1) = f_F (G_2) = F$\\
+Damit gilt:\\
+$f_W(G) = f_W ((G_1 \wedge G_2)) = W$\\
+$f_F(G) = f_F (( G_1 \wedge G_2)) = F$
+
+\item[3. Fall] entfällt
+\end{enumerate}
+$\Rightarrow$ $G$ ist nicht gültig, aber erfüllbar.
+
+\newpage
+\section*{Aufgabe 3}
+
+\subsection*{a)}
+
+Beh.: „$\equiv$“ ist Äquivalenzrelation
+\begin{itemize}
+\item Reflexivität\\
+$G$ Formel. Dann gilt für jede zu $G$ passende Interpretation $f$: $f(G) = f(G)$\\
+$\Rightarrow G \equiv G$
+
+\item Symmetrie:\\
+$G, H$ Formeln mit $G \equiv H$. Dann gilt für jede zu $G$ und $H$ passende Interpretation $f$: $f(G) = f(H)$ $\Leftrightarrow$ $f(H) = f(G)$\\
+$\Rightarrow H \equiv G$
+
+\item Transitivität:\\
+$G, H, I$ Formel mit $G \equiv H, H \equiv I$\\
+für jede zu $G$ und $H$ passende Interpretation\\
+$f$ gilt $f(G) = f(H)$ und jede zu $H$ und $I$ passende Interpretation $g$ mit $g(H) = g(I)$\\
+Sei $h$ zu $G$ und $I$ passende Interpretation.\\
+Sei $h'$ zu $H$ passend mit $h' = h$ auf $((A \cap T(G)) \cup (A \cap T(I)))$ und beliebig sonst.\\
+Dann gilt: $\underbrace{ h' (G) }_{=h(G)} = h' ( H) = \underbrace{ h'(I) }_{= h(I)}$\\
+$\Rightarrow G \equiv I$
+\end{itemize}
+
+Mit gleichen Wahrheitstabellen kommt man nicht immer weiter.\\
+Oder Tabellen, wo ALLE verwendeten atomaren Formeln vorkommen.
+
+
+\subsection*{b)}
+
+
+
+\subsection*{c)}
+
+\paragraph*{ii)}
+Beh. $(( G \wedge H) \wedge I) \equiv (G \wedge ( H \wedge I))$\\
+$f ((( G \wedge H) \wedge I)) = \begin{cases} W\ falls\ f(G \wedge H), f(I)\ W \\ F\ sonst \end{cases}$\\
+$\Leftrightarrow \begin{cases} W\ falls\ f(G), f(H), f(I)\ W \\ F\ sonst \end{cases}$\\
+$\Leftrightarrow \begin{cases} F\ sonst \\ W\ falls\ f(G), f(H \wedge I)\ W \end{cases}$\\
+$= f((G \wedge (H \wedge I)))$
+
+\section*{Aufgabe 4}
+
+Ein Alphabet nur mit $\{\neg, \#, (, ), A_1 … \}$\\
+Formel $G$, die nur ein Atom enthällt\\
+\begin{tabular}{cc|c}
+ & $f(A)$ & $f(G_1)$\\
+ \hline
+$f_2$ & F & W \\
+$f_1$ & W & W \\
+\end{tabular}
+
+\begin{tabular}{c|c}
+$f(A_)$ & $f(G_1)$\\
+\hline
+F & F \\
+W & F \\
+\end{tabular}
+
+$f_1(G_1) \neq f_2(G_1)$\\
+
+I.A. $G = A$ atomar\\
+$f_1(G_1) = f_1(A) \neq f_2(A) = f_2(G)$\\
+IS:
+\begin{enumerate}
+\item[1 Fall] $G = \neg G_1$\\
+$f_1( \neg G_1) \neq f_2( \neg G_1)$
+
+\item[2 Fall] $G = \# (G_1, G_2, G_3)$\\
+$f(G_1) = f_1(G_2) = f_1 (G_3) = W$\\
+$f_1 (G) = W$\\
+$f_2(G) = F$\\
+da nach I.V. $f_1(G_i) \neq f_2 (G_i)$
+
+\begin{enumerate}
+\item[2.2] Genau $2$ $G_i$ sind wahr unter $f_1$\\
+$\Rightarrow f_1(G) = W$\\
+$\Rightarrow$ nach IV ist unter $f_2$ nur ein $G_i$ wahr\\
+$f_2(G) = F$
+
+\item[2.3] Genau ein $G$ ist $W$ unter $f_1$\\
+$\Rightarrow f_1 (G) = F$\\
+nach I.V. sind unter $f_2$ geanu $2$ $G_i$ $W$\\
+$\Rightarrow f_2 (G) = W$\\
+
+\item[2.4] Unter $f_1$ sind alle $G_i$ $f$\\
+$f_1(G) = F$ nach IV sind alle $G_i$ $W$ unter $f_2 \Rightarrow f_2 ( G) = W$
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
