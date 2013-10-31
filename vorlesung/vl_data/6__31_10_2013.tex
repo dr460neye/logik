@@ -1,0 +1,120 @@
+\datum{31.10.2013}
+
+
+Weitere, nicht eindeutige Normalform, die die Komplexität des Erfüllbarkeitsproblems für allgemeine Formeln besser kodiert. 
+
+\definition{}
+\begin{itemize}
+\item Ein Konjunktionsterm ist eine Konjunktion $\bigwedge_{i = 1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
+\item Ein Dusjunktionsterm ist eine Disjunktion $\bigvee_{i=1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
+\end{itemize}
+
+\beispiel{}
+$A_1 \AND \neg A_{13} \AND A_{38}$ Konjunktionsterm\\
+$A_1 \AND \neg A_{13} \AND \neg A_1$ kein Konjunktionsterm ($A_1$ zweimal)
+
+\bemerkung{}
+Minterme und Maxterme sind Konjunktions- bzw. Disjunktionsterme
+
+\definition{}
+\begin{itemize}
+\item Eine Formel $G$ heißt in verallgemeinerter DNF (VDNF), falls $G$ eine Disjunktion von paarweise verschiedenen Konjunktionstermen ist.
+\item Eine Formel $G$ heißt in verallgemeinerter KNF (VKNF), falls $G$ eine Konjunktion von paarweise verschiedenen Disjunktionen ist.
+\end{itemize}
+
+\beispiel{}
+$G = (A_1 \OR A_3) \AND (A_2 \OR A_4 \OR \neg A_7)$ in VKNF (zwei Disjunktionsterme)\\
+aber nicht in KNF
+
+\bemerkung{}
+Zu jeder Formel $G$ gibt es eine semantisch äquivalente Formel im VDN bzw. VKNF\\
+(Folgt aus Satz 2.5)\\
+
+\noindent\\
+Erfüllbarkeitsproblem für Formeln in VDNF und VKNF\\
+$\rightarrow$ Für Konjunktionsterm $\bigwedge_{i=1}^r L_i$ wählen wir Interpretation $f$ mit $f(A_{ji}) = \begin{cases} W\ L_i = A_{ji} \\ F\ L_i = \neg A_{ji} \end{cases}$\\
+Dann ist $f$ wohldefiniert, da jede atomare Formel höchstens einmal auftaucht \\
+$\Rightarrow f(\bigwedge_{i=1}^r L_i) = W$\\
+Also ist jeder Konjunktionsterm erfüllbar.\\
+$\Rightarrow$ jede Formel in VDNF ist erfüllbar bis auf die leere Formel, die wir wieder als unerfüllbar definieren.\\
+
+\noindent\\
+Erfüllbarkeit für Formel in VDNF ist in konstanter Zeit entscheidbar\\
+
+\noindent\\
+$\rightarrow$ Für jeden Disjunktionsterm gibt es mehrere Interpretationen, die diesen erfüllen. Formel in VKNF ist erfüllbar, falls es eine Interpretation gibt, die alle ihre Disjunktionsterme erfüllt.
+
+\beispiel{}
+$G = \underbrace{ (A_1 \OR \neg A_2) }_{f(A_1) = W \ oder \ f(A_2) = F} \AND \underbrace{ ( \neg A_1 \OR A_2 \OR A_3) }_{f(A_1) = F\ oder\ f(A_2)=W\ oder\ f(A_3) = W}$\\
+$f(A_1) = f(A_2) = f(A_3) = W$ erfüllt $G$
+
+\bemerkung{}
+Für Formel in VKNF gibt es kein offensichtliches Verfahren, das die Erfüllbarkeit schnell entscheidet.\\
+Spezialfall:\\
+$G = \bigwedge_{i=1}^s \bigvee_{j=1}^{r_i} L_{ij}$ Formel in VDNF\\
+$\rightarrow r_1 = … = r_2 = 1$\\
+$G = L_{1,1} \AND L_{2,1} \AND … \AND L_{5,1}$\\
+$G$ erfüllbar $\Leftrightarrow$ Es gibt keine atomare Formel $A_t$ und $1 \leq s_1 \leq s_2 \leq s$ mit $L{s_1} = A_t, L_{s_2} = \neg A_t$ oder $L_{s_1} = \neg A_t, L_{s_2} = A_t$\\
+Das ist in linearer Zeit entscheidbar.\\
+
+\noindent\\
+$\rightarrow r_1, …, r_2 \leq 2$\\
+$\rightarrow$ HIer werden wir später einen guten Algorithmus in Kontext von Resolutionen finden\\
+$\rightarrow r_1 = … - r_s = n$ und $G$ ist Formel über $n$ atomare Formeln\\
+$\Rightarrow G$ in KNF, Erfüllbarkeit ist in linearer Zeit entscheidbar\\
+
+\noindent\\
+Ziel: Zeigen Fall $r_1, …, r_3 \leq 3$ ist genauso schwer wie der allgemeine Fall.
+
+\definition{}
+Zwei Formeln $G$ und $H$ geißen erfüllbarkeitsäquivalent, falls $G$ erfüllbar $\Leftrightarrow$ $H$ erfüllbar\\
+
+\satz{2.6}
+Sei $G$ eine Formel in VKNF. Dann kann in der Länge von $G$ polynomial vielen Schritten eine Formel $H$ konstruiert werden, sodass \\
+$\rightarrow$ $G$ und $H$ sind erfüllbarkeitsäquivalent\\
+$\rightarrow$ $H$ in VKNF\\
+$\rightarrow$ In jedem Disjunktionsterm von $H$ sind $\leq 3$ Literale
+
+\beweis{}
+Sei $G = \bigwedge_{i=1}^s \bigvee_{j=1}^{r_i} L_{i,j}$\\
+$M_i = \bigvee_{j=1}^{r_i} L_{i,j}$ und setze $[M_i]_{A_l} = \begin{cases} A_l\ Es\ gilt\ 1 \leq j \leq r_i\ \ L_{i,j} = A_l \\ 
+\neg A_l\ Es\ gilt\ 1 \leq j \leq r_i\ \ A_{i,j} = \neg A_l \\ \emptyset\ sonst \end{cases}$\\
+Seien $A_1, …, A_n$ die atomaren Formeln, die in $G$ auftauchen\\
+
+\noindent\\
+Setze: $N_i = ( [M_i]_{A_i} \OR A_{i,1} )  \AND ( \neg A_{i,1} \OR [M_i]_{A_2} \OR A_{i,2} ) \AND … \AND ( \neg A_{i,n-2} \OR [M_i]_{A_{n-1}} \OR A_{i,n-1}) \AND ( \neg A_{i, n-1} \OR [M_i]_{A_n})$\\
+für reine neue atomare Formeln $A_{i,1}, …, A_{i,n-1}$\\
+Setze $H = \bigwedge_{i=1}^s N_i = N_1 \AND … \AND N_s$\\
+Da jedes $N_1$ in VKNF ist mit $\leq 3$ Literalen pro Disjunktionsterm, ist auch $H$ in VKNF mit $\leq 3$ Literalen pro Disjunktionsterm.\\
+
+\noindent
+Dabei lesen wir\\
+$( \emptyset \OR A_{i,1})$ als $A_{i,1}$\\
+$( \neg A_{i,l} \OR \emptyset A_{i,l+1})$ als $( \neg A_{i.l} \OR A_{i,l-1})$\\
+$(\neg A_{i,n-1} \OR \emptyset)$ als $\neg A_{i,n-1}$\\
+
+\noindent
+Noch zu zeigen: $G$ und $H$ erfüllbarkeitsäquivalent und $H$ ist in polynomialer Zeit konstruierbar.\\
+$\rightarrow$ Erfüllbarkeitsäquivalenz\\
+Sei $G$ erfüllbar $\Rightarrow$ Es gibt Interpretation $f$ mit $f(G) = W$\\
+Da $G = \bigwedge_{i=1}^s \bigvee_{j=1}^{r_i} L_{i,j} = \bigwedge_{i=1}^s M_i$
+\begin{itemize}
+\item $f(G) = W \Rightarrow f(M_i) = W$ für alle $1 \leq i \leq s$
+\item $f(M_i) = f( \bigvee_{j=1}^{r_i} L_{i,j}) = W \Rightarrow$ Es gibt $1 \leq j \leq r_i$ mit $f(L_{i,j}) = W$
+\end{itemize}
+
+\noindent
+Sei $L_{i,j} = \begin{cases} A_l\ oder \\ \neg A_l \end{cases}$ ( $l$ hängt von $i,j$ ab)\\
+
+\noindent
+Definieren Interpretation $g$ mit\\
+$g(A_1) = f(A_1) … g(A_n) = f(A_n)$\\
+$g(A_{i,j}) = \begin{cases} W, i < l \\ F, i \geq l \end{cases}$\\
+Dann interpretiert $g$ alle atomaren Formeln in $H$\\
+Betrachten $g(N_i)$\\
+$g( [M_I] \OR A_{i,1}, g(\neg A_{i,1} \OR [M_i]_{A_i} \OR A_{i,2}), …, g(\neg A_{i, l-1} \OR [M_i]_{A_{l-1}} \OR A_{i,l-1} ) = W$\\
+da $g(A_{i,j}) = … = g(A_{i,l-1}) = W$\\
+$g( \underbrace{ \neg A_{i,l-1} }_F \OR [M_i]_{A_l} \OR \underbrace{ A_{j,l}) }_F = W$ da $g([M_i]_{A_l}) = f([M_i]_{A_l}) = W$\\
+$g( \neg A_{i.l} \OR [M_i]_{A_{l-1} \OR A_{i,l-1}) … g(\neg A_{i,n-2} \OR [M_i]_{A_n-1} \OR A_{i,n-1})$ $g( \neg A_{i,n+1} \OR [M_i]_{A_n}) = W$ da $g(A_{i,l}) = … = g(A_{i,n-1}) = F$\\
+
+
