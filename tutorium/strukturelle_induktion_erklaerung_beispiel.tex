@@ -1,0 +1,65 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\setlength{\parindent}{0pt} 
+
+\begin{document}
+
+\title{Erklärung Strukturelle Induktion}
+\subtitle{Mitschrift aus dem Tutorium von Jens Kosiol}
+\maketitle
+
+\textbf{Beispiel:} Induktion in $\mathbb{N}$:\\
+Wir haben einen „Anfang“ 1\\
+Wir haben \underline{eine} Regel aus Zahlen, neue Zahlen zu berechnen: $n+1$\\
+
+
+\textbf{Strukturelle Induktion:}\\
+Wir haben „Anfänge“ $A_1, A_2, …, $, die atomaren Formeln.\\
+Wir haben \underline{drei} Regeln um aus Formeln neue Formeln zu bilden.\\
+
+Idee: Zeige für eine Aussage $P$ dass $P$ für alle atomaren Formeln gilt.\\
+
+Zeige, dass $P$ beim bilden neuer Formeln durch die drei Regeln enthalten bleibt:\\
+
+\underline{Also:} Wenn $P$ für $b_1, b_2$ gilt, dann auch für\\
+$\neg G_1$\\
+$(G_1 \wedge G_2)$\\
+$(G_1 \vee G_2)$\\
+
+\newpage
+
+\textbf{Beispiel:}\\
+Blatt 1, 4a (Hier kommen alle drei Fälle vor)\\
+$P$: „In jeder semantischen Klasse liegt Formel $G$, die nur $\wedge$ und $\neg$ benutzt.“\\
+\underline{I.A.:} $P$ gilt für alle atomaren Formeln.\\
+Sei $A_i$ beliebige atomare Formel.\\
+
+Dann $A_i \equiv A_i$ und $A_i$ verwendet $\wedge$ und $\neg$\\
+\underline{I.V.:} Seien $G_1$ und $G_2$ Formeln, für die es semantisch äquivalente Formeln $G'_1 \equiv G_1$ und $G'_2 \equiv G_2$, die nur $\wedge$ und $\neg$ benutzen.\\
+\underline{I.S.:} Wir müssen zeigen: Die Eigenschaft $P$ bleibt beim Bilden neuer Formeln erhalten.\\
+
+\begin{enumerate}
+\item[1. Fall:] $G = \neg G_1$\\
+($G'_x$ vorausgesetzt) Nach I.V. existiert $G'_1 \equiv G_1 \Rightarrow \neg G'_1 \equiv G$\\
+und $\neg G'_1$ verwendet nur $\wedge$ und $\neg$. $\checkmark$
+
+\item[2. Fall:] $G = (G_1 \vee G_2)$\\
+nach I.V. existiert $G_1 \equiv G'_1$ und $G_2 \equiv G'_2$\\
+für die gilt: $G'_1$ und $G'_2$ verwenden nur $\wedge$ und $\neg$\\
+$\Rightarrow G = (G'_1 \vee G'_2) \equiv \neg \neg (G'_2 \vee G'_2)$\\
+$\equiv \neg ( \neg G_1 \wedge \neg G'_2)$\\
+und $\neg ( \neg G'_1 \wedge G'_2)$ verwendet nur $\wedge$ und $\neg$
+
+\item[3. Fall:] $G = (G_1 \wedge G_2)$\\
+Nach I.V. existiert $G'_1 \equiv G_1$ und $G'_2 \equiv G_2$,\\
+die nur $\wedge$ und $\neg$ verwenden
+\end{enumerate}
+
+Damit $G \equiv (G'_1 \wedge G'_2)$ und $G'_1 \wedge G'_2)$ verwendet nur $\wedge$ und $\neg$
+
+\end{document}
