@@ -1,0 +1,127 @@
+\datum{4.11.2013}
+
+
+\satz{2.6} VKNF
+\begin{itemize}
+\item erfüllbarkeitsäquivalent
+\item $H$ in VKNK mit $\leq$ 3 Literale pro Disjunktionsterm
+\end{itemize}
+
+Disjunktionsterm\\
+
+\beweis{}
+$G = \bigwedge_{i=1}^r M_1, [M_i]_{A_{r,l}} = \begin{cases} A_l\ A_l\ in\ M_1 \\ \neg A_l\ \neg A_l\ in\ M_l \\ \emptyset\ sonst \end{cases}$\\
+
+$N_i = ( [M_i]_{A_1} \OR A_{i,1}) \AND ( \neg A_{i,1} \OR [M_i]_{A_2} \OR A_{i,2}) \AND … \AND ( \neg A_{1,n-1} \OR [M_i]_{A_n})$\\
+$\# \bigwedge_{i=1}^r N_i$\\
+
+$H$ erfüllbar\\
+$\Rightarrow$ Es gibt Interpretation $f$ mit $f(H) = W$\\
+$\Rightarrow f(N_i) = W, i=1, …, r$\\
+$\Rightarrow f([M_i]_{A_1} \OR A_{i,1}) = W, f(\neg A_{i,1} \OR [M_i]_{A_2} \OR A_{i,2}) = W$\\
+$… f(\neg A_{i,n-1} \OR [M_i]_{A_n}) = W,\ i=1, …, n$\\
+
+Ann:\\
+Es gibt $1 \leq i \leq r$ mit \\
+$[M_i]_{A_l} = \emptyset$ oder $f([M_i]_{A_l}) = F$\\
+Dann:\\
+$f([M_i]_{A_i} \OR A_{i,1}) = W \Rightarrow f(A_{i,1}) = W$\\
+$f(\neg A_{i,n-1} \OR [M_i]_{A_n} )=W \Rightarrow f(A_{i,n-1})=F$\\
+
+Sei $l \geq 1$ mit\\
+$f(A_i,l) = W,\ f(A_{i,l+1}) = F$\\
+Sein ein $l$ existent da $f(A_{i,1}) = W,\ f(A_{i,n-1}) = F$\\
+$f(\neg A_{i,l} \OR [M_i]_{l+1} \OR A_{i,l+1})=W$\\
+$\Rightarrow [M_i]_{l+1} \neq \emptyset$ und $f([M_i]_{l+1}) = W$\\
+$\widerspruch$ zur Ann. $\Rightarrow$ Ann. falsch.\\
+
+$\Rightarrow$ Für alle $1 \leq i \leq r$ gibt es ein $l$ mit\\
+$[N_i]_{A_l} \neq \emptyset$ und $f([M_i]_{A_l}) = W$\\
+Da $M_i = \bigvee_{l=1}^n [M_i]_{A_l}$ folgt $f(M_i) = W$\\
+Da $G = \bigwedge_{i=1}^r M_i$ folgt $f(G) = W \Rightarrow G $ erfüllbar.\\
+
+$\Rightarrow H$ kann in polynomialer Zeit aus $G$ konstruiert werden\\
+Folgt aus der Konstruktionsvorschrift für $H$ (max. quadratisch) $\Box$\\
+
+\beispiel{}
+$G = \underbrace{ A_1 \OR A_2 \OR \neg A_3 \OR A_4 }_{M_1} \AND \underbrace{ (\neg A_2 \OR A_4 \OR A_5 \OR \neg A_6) }_{M_2}$\\
+
+$N_1 = ([M_1]_{A_1} \OR A_{1,1}) \OR (\neg A_{1,1} \OR [M_1]_{A_2} \OR A_{1,2}) \AND$\\
+$( \neg A_{1,2} \OR [M_1]_{A_3} \OR A_{1,3}) \AND$\\
+$(\neg A_{1,3} \OR [M_1]_{A_4} \OR A_{1,4} ) \AND$\\
+$(\neg A_{1,4} \OR [M_1]_{A_5} \OR A_{1,5}) \AND$\\
+$(\neg A_{1,5} \OR [M_1]_{A_6})$\\
+$= (A_1 \OR A_{1,1}) \AND (\neg A_{1,1} \OR A_2 \OR A_{1,2}) \AND ( \neg A_{1,2} \OR \neg A_3 \OR A_{1,3}) \AND ( \neg A_{1,2} \OR A_4 \OR A_{1,4})$\\
+$(\neg A_{1,3} \OR A_{1,5}) \AND (\neg A_{1,5})$\\
+
+$N_2 = (A_{2,1}) \AND ( \neg A_{2,1} \OR \neg A_2 \OR A_{2,2})$\\
+$\AND (\neg A_{2,2} \OR A_{2,3}) \AND (\AND A_{2,3} \OR A_4 \OR A_{2,4})$\\
+$\AND ( \neg A_{2,4} \OR A_5 \OR A_{2,5}) \AND (\neg A_{2,5} \OR \neg A_6)$\\
+$H = N_1 \AND N_2$\\
+
+Algorithmische Konsequenzen von Satz 2.6:\\
+Betrachten folgende Eintscheidungsprobleme\\
+SAT = ENtscheidungproblem von einer Formel in VKNF zu entscheiden, ob sie erfüllbar ist. (Satisfiability)\\
+
+k-SAT-Entscheidungsproblem von einer Formel in VKNF mit $\leq k$ Literalen pro Disjunktionsterm zu entscheiden, ob sie erfüllbar.\\
+
+Satz 2.6 sagt: Gibt es für 3-SAT einen Algorithmus, der in polynomialer Zeit entscheidet, ob eine Formel erfüllbar ist, so gibt es für SAT und jedes k-SAT einen polynomialen ALgorithmus.\\
+
+Zum Abschluss des Kapitels: Eine Klasse von Formeln in VKNF, für die die Erfüllbarkeit in polynomialer Zeit entscheidbar ist.\\
+
+\definition{}
+Ein Formel in VKNF heißt Horn-Formel, falls in jedem Disjunktionsterm höchstens ein positives Literal auftaucht.\\
+
+Ein Literal\\
+$L = A_i$ heißt positiv\\
+$L = \neg A_I$ heißt negativ\\
+
+\beispiel{}
+$(A_1 \OR \neg A_4 \OR \neg A_5 \OR \neg A_7) \AND (\neg A_1 \OR \neg A_2) \AND A_{13}$\\
+ist Horn-Formel\\
+
+$(A_1 \OR A_2) \AND \neg A_4$ kein Hornformel\\
+
+Wir können Horn-Formeln folgendermaßen syntaktisch transformieren.\\
+
+$(A_i \OR \neg A_{j1} \OR … \OR \neg A_{js})$\\
+$\equiv (A_1 \OR \neg (A_{j1} \AND … \AND A_{js} ))$\\
+$\equiv ((A_{j1} \AND … \AND A_{js} ) \rightarrow A_i )$\\
+
+$(\neg A_{j1} \OR … \OR \neg A_{js} ) \rightsquigarrow ((A_{j1} \AND … \AND A_{js}) \rightarrow F)$\\
+$(A_i) \rightsquigarrow (W \rightarrow A_i)$\\
+
+Man wendet auf die so transformierte Formel den Markierungsalgorithmus an
+\begin{enumerate}
+\item[(1)] Markiere jeses Vorkommen der atomaren Formeln $A_i$, für die $(W \rightarrow A_i)$ ein Disjunktionsterm ist.
+
+\item[(2)] $\rightarrow$ Es gibt ein Disjunktionsterm $(A_{j1} \AND … \AND A_{js} \rightarrow F)$\\
+sodass $A_{j1}, …, A_{js}$ markiert sind\\
+Dann STOP mit Ausgabe unerfüllbar\\
+$\rightarrow$ Es gibt ein Disjunktionsterm $((A_{j1} \AND … \AND A_{js}) \rightarrow A_i)$, sodass $A_{j1}, …, A_{js}$ markiert sind. Dann markieren jedes Vorkommen von $A_i$ und gehen zu (2)\\
+Sonst STOP mit Ausgabe erfüllbar
+\end{enumerate}
+
+\beispiel{}
+$G = (A_1 \OR \neg A_2 \OR \neg A_3) \AND ( A_2 \OR \neg A_3) \AND A_3 \AND ( \neg A_3 \OR \neg A_4)$\\
+$\rightsquigarrow ( (A_2 \AND A_3) \rightarrow A_2) \AND (A_3 \rightarrow A_2) \AND ( W \rightarrow A_3) \AND (( A_3 \AND A_3) \rightarrow F)$\\
+(1) $\rightsquigarrow$ $((A_2 \AND \bar{A_3}) \rightarrow A_1) \AND (\bar{A_3} \rightarrow A_2) \AND (W \rightarrow \bar{A_3}) \AND (\bar{A_3} \AND A_4 \rightarrow F)$\\
+(2) $\rightsquigarrow$ $((\bar{A_2} \AND \bar{A_3}) \rightarrow A_1) \AND ( \bar{A_3} \rightarrow \bar{A_2}) \AND (W \rightarrow \bar{A_3}) \AND (\bar{A_3} \AND A_4 \rightarrow F)$\\
+$\rightarrow$ $G$ ist erfüllbar.
+
+\satz{2.7} Der Markierungsalgorithmus ist korrekt.
+
+\beweis{}
+Beh: Ist $f$ eine Interpretation mit $f(G) = W$ für eine Horn-Formel $G$, so ist $f(A_i ) = W$ für jede atomare Formel, die bei Eingabe von $G$ im Markierungsalgorithmus markiert wird.\\
+
+\underline{1. Fall} $A_i$ wird in Schritt (1) markiert\\
+$\Rightarrow (W \rightarrow A_i)$ bzw. $A_i$ ist Disjunktionsterm in $G$. Also folgt aus $f(G) = W$ schon $f(A_i) = W$\\
+
+\underline{2. Fall} $A_i$ wird in Schritt (2) markiert. \\
+$\Rightarrow ((A_{j,1} \AND … \AND A_{js}) \rightarrow A_1) \equiv (A_i \OR \neg A_{j1} \OR … \OR \neg A_{js})$ ist.\\
+
+Disjunktionsterm in $G$ und $A_{j1}, A_{js}$ sind markiert.\\
+Per Induktion über die Anzahl der Schritte im Markierungsalgorithmus können wir annehmen\\
+$f(A_{i_1}) = … = f(A_{i_3}) = W$ für jede Interpretation $f$ mit $f(G) = W$\\
+Dann folgt aus $f(G) = W$ schon $f(A_i \OR \neg A_{j_1} \OR … \OR \neg A_{j_3}) = W$
+$\Rightarrow f(A_i) = W$ $\Box$
