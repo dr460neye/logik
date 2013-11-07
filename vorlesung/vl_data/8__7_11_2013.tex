@@ -1,0 +1,157 @@
+\datum{7.11.2013}
+
+
+Horn-Formeln\\
+VKNF mit $\leq 1$ ps-Literal pro Disjunktionsterm\\
+
+$(A_i \OR A_{ij} \OR … \OR A_J) \rightsquigarrow (A_{j1} \AND … \AND A_{js} \rightarrow  A_i)$\\
+$A_i \rightsquigarrow (W \rightarrow A_i)$\\
+$\neg A_{j1} \OR … \OR A_{js} \rightsquigarrow (A_{j1} \OR … \OR A_{js} \rightarrow F)$\\
+
+\satz{} Markierungsalg. korrekt\\
+
+\beweis{}
+$G$ Hornformel und $G$ erfüllbar\\
+$\Rightarrow f(A_i) = W$ für alle $A_i$\\
+din im Markierungsalg markiert werden.\\
+
+$\rightarrow$ ist $G$ erfüllbar, so wird dies vom Markierungsalg festgestellt\\
+
+\annahme{}
+Markierungsalg kommt zum Ergebnis unerfüllbar\\
+Dann gibt es nach einigen Schritten im Markierungsalg eine Formel $(A_{j1} \AND … \AND A_{ji} \rightarrow F)$ wobei $A_{j1}, …, A_{js}$ markiert sind\\
+
+\behauptung{}
+Für jede Interpretation $f$ mit $f(G) = W$ gilt\\
+$f(A_{j1}) = … = f(A_{js}) = W$\\
+$G$ enthält aber $((A_{j1} \AND … \AND A_{js}) \rightarrow F) \rightsquigarrow ( \neg A_{j1} \OR … \OR \neg A_{js})$\\
+Da $f(\neg A_{j1} \OR … \OR \neg A_{js}) =F$ folgt $f(G)=F$\\
+$\Rightarrow$ also Annahme falsch und Markierungsalg kommt zum Ergebnis „erfüllbar“\\
+
+$\rightarrow$ Ist $G$ unerfüllbar, so wird das im Markierungsalg festgestellt.\\
+
+\annahme{}
+Markierungsalg kommt zum Ergebnis erfüllbar.\\
+Definieren Interpretation $f$ durch\\
+$f(A_i) = \begin{cases} W\ A_i\ bei\ Abbruch\ markiert \\ F\ sonst \end{cases}$\\
+
+Betrachten die verschiedenen Disjunktionsterme von $G$\\
+$(A_i \rightarrow W)$ Dann ist $A_i$ im 1 Schritt markiert und $f(A_i) = W$\\
+$(A_{j1} \AND … \AND A_{js} \rightarrow A_i)$\\
+
+Entweder \\
+$A_{j1}, …, A_{js}$ und $A_i$ markiert\\
+Dann $f((A_{j1} \AND … \AND A_{js}) \rightarrow A_i) = W$ da\\
+$f(A_{j1}) = … = f(A_{js})=W$\\
+
+oder es gilt $1 \leq l \leq s$, so dass $A_{jl}$ nicht markiert.\\
+Also $f(A_{jl}) = F$\\
+$\Rightarrow f((A_{j1} \AND … \AND A_{jl}) \rightarrow A_i) = W$\\
+
+$(A_{j1} \AND … \AND A_{js} \rightarrow F)$\\
+Da der Algorithmus mit „erfüllbar“ abbricht gibt es $1 \leq l \leq s$ mit $A_{jl}$ nicht markiert. Also $f(A_{jl})=F$\\
+Damit $f(\neg A_{j1} \OR … \OR \neg A_{js}) = W$\\
+$\Rightarrow f$ erfüllt alle Disjunktionsterme von $G$\\
+$\Rightarrow f(G) = W  \rightarrow$ \widerspruch zur Annahme\\
+$\Rightarrow$ Markierungsalg kommt zum Ergebnis „unerfüllbar“ $\Box$\\
+
+\definition{}
+Seien $f,g$ Modell von einer Formel $G$
+\begin{itemize}
+\item Wir sagen $f \leq g \Leftrightarrow (f(A_i) = W \Rightarrow g(A_i) =W$ für alle atomaren Formeln $A_i$ aus $G$)
+
+\item Wir sagen $f$ ist minimales Modell von $G$ falls $f \leq g$ für jedes Modell $g$ von $G$
+\end{itemize}
+
+\beispiel{}
+$G = A_1 \AND \neg (\neg A_2 \OR A_3)$\\
+Modelle\\
+\begin{tabular}{c|c|cr}
+$A_1$ & $A_2$ & $A_3$ &  \\
+\hline
+W & F & F & $f_1$ \\
+W & F & W & $f_2$ \\
+W & W & W & $f_3$ \\
+\end{tabular}
+(minimales Modell (alle anderen Modelle sind größer oder gleich))\\
+$f_1 \leq f_2$\\
+$f_1 \leq f_3$\\
+$f2 \leq f_3$\\
+
+\folgerung{2.8}
+Sei $G$ eine erfüllbare Horn-Formel, dann besitzt $G$ ein minimales Modell
+
+\beweis{}
+Im Beweis von Satz 2.7 wird gezeigt:
+\begin{itemize}
+\item[$\rightarrow$] Alle im Markierungsalg markierten atomaren Formeln müssen durch ein Modell von $G$ als W interpretiert werden
+
+\item[$\rightarrow$] Die Interpretation $f$, die alle im Markierungsalg markierten atomaren Formeln mit W und alle anderen als F interpretiert ist ein Modell von $G$
+
+\item[$\rightarrow$] Dieses $f$ ist das minimale Modell $\Box$
+\end{itemize}
+
+\bemerkung{}
+Aus Korrektheit des Markierungsalg folgt
+\begin{enumerate}
+\item[(i)] Eine Horn-Formel mit genau einem pos. Literal pro Disjunktionsterm ist erfüllbar
+
+\item[(ii)] Eine Horn-Formel ohne einen Disjunktionsterm, der nur aus einem positiven Literal besteht ist erfüllbar.
+\end{enumerate}
+
+\folgerung{2.9}
+Für Horn-Formeln kann die Erfüllbarkeit in polynomialer Zeit entschieden werden.
+
+\beweis{}
+Analyse des Markierungsalg\\
+Schritt (1) lineare Zeit\\
+Schritt (2) lineare Zeit (allerdings wird dieser Schritt öfters gemacht)\\
+Schritt (2) wird $\leq$ Formellänge oft durchlaufen (worst-case)\\
+$\Rightarrow$ quadratische Laufzeit $\Box$
+
+\newpage
+
+\section{Kompaktheitssatz}
+
+Wiederholung\\
+$\Sigma$ Formelmenge heißt erfüllbar: $\Leftrightarrow$ Es gibt Interpretation $f$ mit $f(G) = W$ für $G \in \Sigma$\\
+(so ein $f$ heißt Modell von $\Sigma$)\\
+
+Falls $\# \Sigma < \infty$ und $\Sigma = \{ G_1, …, G_r\}$\\
+$\Sigma$ erfüllbar $\Leftrightarrow G_1 \AND … \AND G_r$ erfüllbar\\
+
+\satz{3.1} (Kompaktheitssatz)\\
+Sei $\Sigma$ Formelmenge. Dann gilt:\\
+$\Sigma$ erfüllbar $\Leftrightarrow$ jede endliche Teilmenge von $\Sigma$ ist erfüllbar.
+
+\beweis{}
+\begin{itemize}
+\item[„$\Rightarrow$“] $\Sigma$ erfüllbar $\Rightarrow$ Es gilt Interpretation $f$ mit $f(G) =W$ für alle $G \in \Sigma$\\
+
+Sei $\Sigma' \subseteq \Sigma$ endlich\\
+Dann $f(G) = W$ für alle $G \in \Sigma'$\\
+$\Rightarrow \Sigma'$ erfülbar
+
+\item[„$\Leftarrow$“] Sei $\Sigma$ Formelmenge über $\{A_1, A_2, … \}$\\
+$\Sigma_n := \{ G \in \Sigma$ | keine atomare Formel $A_i$ mit $i \gneq n$ kommt in $G$ vor $\}$
+
+\end{itemize}
+
+Es gibt $2^{2^n}$ semantische Klassen von Formeln über $\{A_1, …, A_n\}$\\
+$\Rightarrow \Sigma'_n =$ Menge von Repräsentationen der semantischen Klassen, für die es eine Formel in $\Sigma_n$ gibt, ist endliche Menge, $\# \Sigma'_n < \infty$\\
+$\Rightarrow \Sigma'_n$ erfüllbar\\
+
+Jedes Modell von $\Sigma'_n$ ist Modell von $\Sigma_n$\\
+$\Rightarrow$ Es gibt Interpretation $f_n, n \geq 1$, mit $f_n(G) = W$ für alle $G \in \Sigma_n$\\
+Es gibt $\Sigma_1 \subseteq \Sigma_2 \subseteq … \subseteq \Sigma$\\
+Konstruktion einer Interpretation $f$ mit $f(G)=W$ für alle $G \in \Sigma$
+\begin{enumerate}
+\item[(1)] Indexmenge $I = \{ 1, 2, 3, …\}, i:=1$
+\item[(2)] Falls $\# \{ n \in I\ |\ f_n(A_i) = W \} = \infty$\\
+dann $f(A_i) = W$\\
+$I := I \backslash \{ n\ |\ f_n(A_i)=F \}$\\
+sonst\\
+$f(A_i) = F$\\
+$I := I \backslash \{ n\ |\ f_n(A_i)  W\}$
+\item[(3)] $i=i+1$, gehe zu (2)
+\end{enumerate}
