@@ -64,19 +64,21 @@ $K_4 = \{G \in F_1 | G \equiv A_1 \AND \neg A_1\}$\\
     
 \bemerkung{}
 „$\equiv$“ ist Äquivalenzrelation auf $F_n$ und die semantischen Klassen sind die Äquivalenzklasse bzgl „$\equiv$“\\
-    
+
+\begin{minipage}{\textwidth}
 \bemerkung{}
 \begin{itemize}
 \item Die Elemente einer semantischen Klasse sind alle Formeln mit der gleichen Wahrheitstabellen
 \item Jede semantische Klasse enthält unendlich viele Formeln\\
     $(G \equiv \neg \neg G \equiv \neg \neg \neg \neg G \equiv … )$
 \end{itemize}
+\end{minipage}
 
 \definition{}
 \begin{itemize}
-\item Eine Formel $G$ heißt gültig oder Tautologie, falls $f(G) = W$ für jede Interpretation $f$
+\item Eine Formel $G$ heißt gültig oder \Index{Tautologie}, falls $f(G) = W$ für jede Interpretation $f$
 \item Eine Formel $G$ heißt erfüllbar, falls es eine Interpretation $f$ gibt mit $f(G) = W$
-\item Eine Formel $G$ heißt nicht erfüllbar, unerfüllbar oder Antilogie, falls $f(G) = F$ für alle Interpretationen $f$
+\item Eine Formel $G$ heißt nicht erfüllbar, unerfüllbar oder \Index{Antilogie}, falls $f(G) = F$ für alle Interpretationen $f$
 \end{itemize}
 
 \beispiel{}\\
@@ -95,7 +97,7 @@ Ein zentrales Ziel der Vorlesung wird es sein, Algorithmen zu entwickeln, die zu
 \item $G, H$ nicht erfüllbar $\Rightarrow G \equiv H$
 \end{enumerate}
 
-\noindent
+\begin{minipage}{\textwidth}
 Wir untersuchen nun die Ausdruckskraft der Aussagenlogik:\\
 Gegeben eine Wahrheitstabelle\\
 z. B.\\
@@ -111,7 +113,8 @@ W & F & W & F\\
 W & W & F & W\\
 W & W & W & F
 \end{tabular}\\
-Gibt es Formel $G$ mit dieser Wahrheitstabelle?\\
+Gibt es Formel $G$ mit dieser Wahrheitstabelle?
+\end{minipage}
 
 \lemma{1.2}
 Über eine Menge von $n$ atomaren Formeln gibt es $2^{2^{n}}$ semantische Klassen. Insbesondere gibt es zu jeder Wahrheitstabelle eine Formel mit dieser Wahrheitstabelle.\\
@@ -189,24 +192,24 @@ Idempotenz \hspace{1cm} \= $(G \AND G) \equiv G$\\
 %\end{tabbing}
 \\
 %\begin{tabbing}
-Assoziativität \> $((G \AND H) \AND I ) \equiv (G \AND (H \AND I))$\\
+\Index{Assoziativität} \> $((G \AND H) \AND I ) \equiv (G \AND (H \AND I))$\\
 \> $((G \OR H) \OR I) \equiv (G \OR (H \OR I ))$\\
 %\end{tabbing}
 \\
 %\begin{tabbing}
-Distributivität \> $(G \AND ( H \OR I )) \equiv ((G \AND H ) \OR (G \AND I ))$\\
+\Index{Distributivität} \> $(G \AND ( H \OR I )) \equiv ((G \AND H ) \OR (G \AND I ))$\\
 \> $(G \OR ( H \AND I )) \equiv (( G \OR H ) \AND ( G \OR I ))$\\
 %\end{tabbing}
 \\
 %\begin{tabbing}
-Absorption \> $(G \AND ( G \OR H )) \equiv G$\\
+\Index{Absorption} \> $(G \AND ( G \OR H )) \equiv G$\\
 \> $(G \OR ( G \AND H )) \equiv G$\\
 %\end{tabbing}
 \\
-Doppelnegation \> $\neg \neg G \equiv G$\\
+\Index{Doppelnegation} \> $\neg \neg G \equiv G$\\
 \\
 %\begin{tabbing}
-deMorgan Regel \> $\neg ( G \AND H ) \equiv \neg G \OR \neg H$\\
+\Index{deMorgan} Regel \> $\neg ( G \AND H ) \equiv \neg G \OR \neg H$\\
 \> $\neg ( G \OR H) \equiv \neg G \AND \neg H$
 \end{tabbing}
 
