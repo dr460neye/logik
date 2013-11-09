@@ -8,30 +8,30 @@ $(A_i \OR A_{ij} \OR … \OR A_J) \rightsquigarrow (A_{j1} \AND … \AND A_{js} 
 $A_i \rightsquigarrow (W \rightarrow A_i)$\\
 $\neg A_{j1} \OR … \OR A_{js} \rightsquigarrow (A_{j1} \OR … \OR A_{js} \rightarrow F)$\\
 
-\satz{} Markierungsalg. korrekt\\
+\satz{} Markierungsalgorithmus korrekt\\
 
 \beweis{}
 $G$ Hornformel und $G$ erfüllbar\\
 $\Rightarrow f(A_i) = W$ für alle $A_i$\\
-din im Markierungsalg markiert werden.\\
+din im Markierungsalgorithmus markiert werden.\\
 
-$\rightarrow$ ist $G$ erfüllbar, so wird dies vom Markierungsalg festgestellt\\
+$\rightarrow$ ist $G$ erfüllbar, so wird dies vom Markierungsalgorithmus festgestellt\\
 
 \annahme{}
-Markierungsalg kommt zum Ergebnis unerfüllbar\\
-Dann gibt es nach einigen Schritten im Markierungsalg eine Formel $(A_{j1} \AND … \AND A_{ji} \rightarrow F)$ wobei $A_{j1}, …, A_{js}$ markiert sind\\
+Markierungsalgorithmus kommt zum Ergebnis unerfüllbar\\
+Dann gibt es nach einigen Schritten im Markierungsalgorithmus eine Formel $(A_{j1} \AND … \AND A_{ji} \rightarrow F)$ wobei $A_{j1}, …, A_{js}$ markiert sind\\
 
 \behauptung{}
 Für jede Interpretation $f$ mit $f(G) = W$ gilt\\
 $f(A_{j1}) = … = f(A_{js}) = W$\\
 $G$ enthält aber $((A_{j1} \AND … \AND A_{js}) \rightarrow F) \rightsquigarrow ( \neg A_{j1} \OR … \OR \neg A_{js})$\\
 Da $f(\neg A_{j1} \OR … \OR \neg A_{js}) =F$ folgt $f(G)=F$\\
-$\Rightarrow$ also Annahme falsch und Markierungsalg kommt zum Ergebnis „erfüllbar“\\
+$\Rightarrow$ also Annahme falsch und Markierungsalgorithmus kommt zum Ergebnis „erfüllbar“\\
 
-$\rightarrow$ Ist $G$ unerfüllbar, so wird das im Markierungsalg festgestellt.\\
+$\rightarrow$ Ist $G$ unerfüllbar, so wird das im Markierungsalgorithmus festgestellt.\\
 
 \annahme{}
-Markierungsalg kommt zum Ergebnis erfüllbar.\\
+Markierungsalgorithmus kommt zum Ergebnis erfüllbar.\\
 Definieren Interpretation $f$ durch\\
 $f(A_i) = \begin{cases} W\ A_i\ bei\ Abbruch\ markiert \\ F\ sonst \end{cases}$\\
 
@@ -39,21 +39,23 @@ Betrachten die verschiedenen Disjunktionsterme von $G$\\
 $(A_i \rightarrow W)$ Dann ist $A_i$ im 1 Schritt markiert und $f(A_i) = W$\\
 $(A_{j1} \AND … \AND A_{js} \rightarrow A_i)$\\
 
-Entweder \\
-$A_{j1}, …, A_{js}$ und $A_i$ markiert\\
-Dann $f((A_{j1} \AND … \AND A_{js}) \rightarrow A_i) = W$ da\\
-$f(A_{j1}) = … = f(A_{js})=W$\\
+\begin{minipage}{\textwidth}
+Entweder\\*
+$A_{j1}, …, A_{js}$ und $A_i$ markiert\\*
+Dann $f((A_{j1} \AND … \AND A_{js}) \rightarrow A_i) = W$ da\\*
+$f(A_{j1}) = … = f(A_{js})=W$\\*
 
-oder es gilt $1 \leq l \leq s$, so dass $A_{jl}$ nicht markiert.\\
-Also $f(A_{jl}) = F$\\
-$\Rightarrow f((A_{j1} \AND … \AND A_{jl}) \rightarrow A_i) = W$\\
+oder es gilt $1 \leq l \leq s$, so dass $A_{jl}$ nicht markiert.\\*
+Also $f(A_{jl}) = F$\\*
+$\Rightarrow f((A_{j1} \AND … \AND A_{jl}) \rightarrow A_i) = W$\\*
+\end{minipage}
 
 $(A_{j1} \AND … \AND A_{js} \rightarrow F)$\\
 Da der Algorithmus mit „erfüllbar“ abbricht gibt es $1 \leq l \leq s$ mit $A_{jl}$ nicht markiert. Also $f(A_{jl})=F$\\
 Damit $f(\neg A_{j1} \OR … \OR \neg A_{js}) = W$\\
 $\Rightarrow f$ erfüllt alle Disjunktionsterme von $G$\\
 $\Rightarrow f(G) = W  \rightarrow$ \widerspruch zur Annahme\\
-$\Rightarrow$ Markierungsalg kommt zum Ergebnis „unerfüllbar“ $\Box$\\
+$\Rightarrow$ Markierungsalgorithmus kommt zum Ergebnis „unerfüllbar“ $\Box$\\
 
 \definition{}
 Seien $f,g$ Modell von einer Formel $G$
@@ -84,15 +86,15 @@ Sei $G$ eine erfüllbare Horn-Formel, dann besitzt $G$ ein minimales Modell
 \beweis{}
 Im Beweis von Satz 2.7 wird gezeigt:
 \begin{itemize}
-\item[$\rightarrow$] Alle im Markierungsalg markierten atomaren Formeln müssen durch ein Modell von $G$ als W interpretiert werden
+\item[$\rightarrow$] Alle im Markierungsalgorithmus markierten atomaren Formeln müssen durch ein Modell von $G$ als W interpretiert werden
 
-\item[$\rightarrow$] Die Interpretation $f$, die alle im Markierungsalg markierten atomaren Formeln mit W und alle anderen als F interpretiert ist ein Modell von $G$
+\item[$\rightarrow$] Die Interpretation $f$, die alle im Markierungsalgorithmus markierten atomaren Formeln mit W und alle anderen als F interpretiert ist ein Modell von $G$
 
 \item[$\rightarrow$] Dieses $f$ ist das minimale Modell $\Box$
 \end{itemize}
 
 \bemerkung{}
-Aus Korrektheit des Markierungsalg folgt
+Aus Korrektheit des Markierungsalgorithmus folgt
 \begin{enumerate}
 \item[(i)] Eine Horn-Formel mit genau einem pos. Literal pro Disjunktionsterm ist erfüllbar
 
@@ -103,7 +105,7 @@ Aus Korrektheit des Markierungsalg folgt
 Für Horn-Formeln kann die Erfüllbarkeit in polynomialer Zeit entschieden werden.
 
 \beweis{}
-Analyse des Markierungsalg\\
+Analyse des Markierungsalgorithmus\\
 Schritt (1) lineare Zeit\\
 Schritt (2) lineare Zeit (allerdings wird dieser Schritt öfters gemacht)\\
 Schritt (2) wird $\leq$ Formellänge oft durchlaufen (worst-case)\\

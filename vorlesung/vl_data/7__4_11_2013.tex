@@ -4,12 +4,12 @@
 \satz{2.6} VKNF
 \begin{itemize}
 \item erfüllbarkeitsäquivalent
-\item $H$ in VKNK mit $\leq$ 3 Literale pro Disjunktionsterm
+\item $H$ in VKNF mit $\leq$ 3 Literale pro Disjunktionsterm
 \end{itemize}
 
-Disjunktionsterm\\
+%Disjunktionsterm\\
 
-\beweis{}
+\beweis{}\\
 $G = \bigwedge_{i=1}^r M_1, [M_i]_{A_{r,l}} = \begin{cases} A_l\ A_l\ in\ M_1 \\ \neg A_l\ \neg A_l\ in\ M_l \\ \emptyset\ sonst \end{cases}$\\
 
 $N_i = ( [M_i]_{A_1} \OR A_{i,1}) \AND ( \neg A_{i,1} \OR [M_i]_{A_2} \OR A_{i,2}) \AND … \AND ( \neg A_{1,n-1} \OR [M_i]_{A_n})$\\
@@ -59,9 +59,9 @@ $\AND (\neg A_{2,2} \OR A_{2,3}) \AND (\AND A_{2,3} \OR A_4 \OR A_{2,4})$\\
 $\AND ( \neg A_{2,4} \OR A_5 \OR A_{2,5}) \AND (\neg A_{2,5} \OR \neg A_6)$\\
 $H = N_1 \AND N_2$\\
 
-Algorithmische Konsequenzen von Satz 2.6:\\
+\textbf{Algorithmische Konsequenzen von Satz 2.6:}\\
 Betrachten folgende Eintscheidungsprobleme\\
-SAT = ENtscheidungproblem von einer Formel in VKNF zu entscheiden, ob sie erfüllbar ist. (Satisfiability)\\
+\Index{SAT} = Entscheidungproblem von einer Formel in VKNF zu entscheiden, ob sie erfüllbar ist. (Satisfiability)\\
 
 k-SAT-Entscheidungsproblem von einer Formel in VKNF mit $\leq k$ Literalen pro Disjunktionsterm zu entscheiden, ob sie erfüllbar.\\
 
@@ -70,7 +70,7 @@ Satz 2.6 sagt: Gibt es für 3-SAT einen Algorithmus, der in polynomialer Zeit en
 Zum Abschluss des Kapitels: Eine Klasse von Formeln in VKNF, für die die Erfüllbarkeit in polynomialer Zeit entscheidbar ist.\\
 
 \definition{}
-Ein Formel in VKNF heißt Horn-Formel, falls in jedem Disjunktionsterm höchstens ein positives Literal auftaucht.\\
+Ein Formel in VKNF heißt \Index{Horn-Formel}, falls in jedem Disjunktionsterm höchstens ein positives Literal auftaucht.\\
 
 Ein Literal\\
 $L = A_i$ heißt positiv\\
@@ -91,7 +91,7 @@ $\equiv ((A_{j1} \AND … \AND A_{js} ) \rightarrow A_i )$\\
 $(\neg A_{j1} \OR … \OR \neg A_{js} ) \rightsquigarrow ((A_{j1} \AND … \AND A_{js}) \rightarrow F)$\\
 $(A_i) \rightsquigarrow (W \rightarrow A_i)$\\
 
-Man wendet auf die so transformierte Formel den Markierungsalgorithmus an
+Man wendet auf die so transformierte Formel den \Index{Markierungsalgorithmus} an
 \begin{enumerate}
 \item[(1)] Markiere jeses Vorkommen der atomaren Formeln $A_i$, für die $(W \rightarrow A_i)$ ein Disjunktionsterm ist.
 

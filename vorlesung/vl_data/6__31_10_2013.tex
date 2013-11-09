@@ -5,8 +5,8 @@ Weitere, nicht eindeutige Normalform, die die Komplexität des Erfüllbarkeitspr
 
 \definition{}
 \begin{itemize}
-\item Ein Konjunktionsterm ist eine Konjunktion $\bigwedge_{i = 1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
-\item Ein Dusjunktionsterm ist eine Disjunktion $\bigvee_{i=1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
+\item Ein \Index{Konjunktionsterm} ist eine Konjunktion $\bigwedge_{i = 1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
+\item Ein \Index{Dusjunktionsterm} ist eine Disjunktion $\bigvee_{i=1}^r L_i$ für Literale $L_i, i=1, , r$, sodass jede atomare Formel höchstens einmal auftaucht.
 \end{itemize}
 
 \beispiel{}
@@ -18,8 +18,8 @@ Minterme und Maxterme sind Konjunktions- bzw. Disjunktionsterme
 
 \definition{}
 \begin{itemize}
-\item Eine Formel $G$ heißt in verallgemeinerter DNF (VDNF), falls $G$ eine Disjunktion von paarweise verschiedenen Konjunktionstermen ist.
-\item Eine Formel $G$ heißt in verallgemeinerter KNF (VKNF), falls $G$ eine Konjunktion von paarweise verschiedenen Disjunktionen ist.
+\item Eine Formel $G$ heißt in verallgemeinerter DNF (\Index{VDNF}), falls $G$ eine Disjunktion von paarweise verschiedenen Konjunktionstermen ist.
+\item Eine Formel $G$ heißt in verallgemeinerter KNF (\Index{VKNF}), falls $G$ eine Konjunktion von paarweise verschiedenen Disjunktionen ist.
 \end{itemize}
 
 \beispiel{}
@@ -27,11 +27,11 @@ $G = (A_1 \OR A_3) \AND (A_2 \OR A_4 \OR \neg A_7)$ in VKNF (zwei Disjunktionste
 aber nicht in KNF
 
 \bemerkung{}
-Zu jeder Formel $G$ gibt es eine semantisch äquivalente Formel im VDN bzw. VKNF\\
+Zu jeder Formel $G$ gibt es eine semantisch äquivalente Formel im VDNF bzw. VKNF\\
 (Folgt aus Satz 2.5)\\
 
 \noindent\\
-Erfüllbarkeitsproblem für Formeln in VDNF und VKNF\\
+Erfüllbarkeitsproblem für Formeln in VDNF und VKNF\index{Erfüllbarkeit, VDNF, VKNF}\\
 $\rightarrow$ Für Konjunktionsterm $\bigwedge_{i=1}^r L_i$ wählen wir Interpretation $f$ mit $f(A_{ji}) = \begin{cases} W\ L_i = A_{ji} \\ F\ L_i = \neg A_{ji} \end{cases}$\\
 Dann ist $f$ wohldefiniert, da jede atomare Formel höchstens einmal auftaucht \\
 $\Rightarrow f(\bigwedge_{i=1}^r L_i) = W$\\
@@ -67,7 +67,7 @@ $\Rightarrow G$ in KNF, Erfüllbarkeit ist in linearer Zeit entscheidbar\\
 Ziel: Zeigen Fall $r_1, …, r_3 \leq 3$ ist genauso schwer wie der allgemeine Fall.
 
 \definition{}
-Zwei Formeln $G$ und $H$ geißen erfüllbarkeitsäquivalent, falls $G$ erfüllbar $\Leftrightarrow$ $H$ erfüllbar\\
+Zwei Formeln $G$ und $H$ geißen \Index{erfüllbarkeitsäquivalent}, falls $G$ erfüllbar $\Leftrightarrow$ $H$ erfüllbar
 
 \satz{2.6}
 Sei $G$ eine Formel in VKNF. Dann kann in der Länge von $G$ polynomial vielen Schritten eine Formel $H$ konstruiert werden, sodass \\

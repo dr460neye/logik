@@ -15,6 +15,10 @@
 %\usepackage{titlepic}
 \usepackage{float}
 \usepackage{enumerate}
+\usepackage{makeidx}
+\makeindex
+\newcommand{\Index}[1]{#1\index{#1}}
+
 
 \setlength\parindent{0pt}
 
@@ -28,15 +32,15 @@
 \newcommand{\beweis}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Bew.: #1}\end{large}}
 \newcommand{\beispiel}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Bsp.: #1}\end{large}}
 \newcommand{\bemerkung}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Bem.: #1}\end{large}}
-\newcommand{\folgerung}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Folgerung #1:}\end{large}}
+\newcommand{\folgerung}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Folgerung #1:}\end{large}\index{Folgerung!#1}}
 \newcommand{\behauptung}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Beh.: #1}\end{large}}
-\newcommand{\lemma}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Lemma #1:}\end{large}}
-\newcommand{\satz}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Satz #1:}\end{large}}
+\newcommand{\lemma}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Lemma #1:}\end{large}\index{Lemma!#1}}
+\newcommand{\satz}[1]{\vspace{.5cm} \noindent \begin{large}\textbf{Satz #1:}\end{large}\index{Satz!#1}}
 \newcommand{\annahme}{\vspace{.5cm} \noindent \begin{large}\textbf{Annahme:}\end{large}}
 
 \newcommand{\widerspruch}{Widerspruch }
 
-\newcommand{\datum}[1]{\begin{flushright}\textit{Vorlesung vom #1}\end{flushright}}
+\newcommand{\datum}[1]{\begin{flushright}\textit{Vorlesung vom #1}\end{flushright}\index{Vorlesung!#1}}
 
 \newcommand{\AND}{\wedge}
 \newcommand{\OR}{\vee}
@@ -65,6 +69,7 @@
 \vspace{1cm}
 \begin{large}gehalten von Prof. Volkmar Welker\end{large}\\
 \vspace{1cm}
+\begin{small}zuletzt aktualisiert:\end{small}\\
 \begin{Large}\today \end{Large}
 \end{center}
 
@@ -99,5 +104,9 @@ empfohlenes Buch zur Vorlesung:\\
 \input{./vl_data/7__4_11_2013.tex}
 \input{./vl_data/8__7_11_2013.tex}
 
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{section}{Stichwortverzeichnis}
+\printindex
 
 \end{document}
