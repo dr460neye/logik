@@ -1,0 +1,51 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\title{Erläuterung Markierungsalgorithmus}
+\subtitle{(Der Markierungsalgorithmus funktioniert nur bei Horn-Formeln)}
+\maketitle
+
+\begin{enumerate}
+\item Bei einer Klausel $\{A\}$ schreibt man\\
+$W \rightarrow A$
+
+\item Bei einer Klausel $\{A_1, \neg A_2, \neg A_3 … \}$ schreibt man\\
+$(A_2 \wedge A_3 \wedge … ) \rightarrow A_1$
+
+\item Bei $\{\neg A\}$ schreibt man\\
+$A \rightarrow F$
+\end{enumerate}
+
+Jetzt kann es losgehen mit markieren:
+
+\begin{enumerate}
+\item zuerst werden alle atomaren Formeln markiert, die als $W \rightarrow A$ vorkommen.\\
+Wenn man also $W \rightarrow A$ irgendwo stehen hat, dann muss man alle Vorkommen von $A$ in allen umgeschriebenen Formeln markieren
+
+\item nun schaut man, ob eine Formel da ist mit $A \rightarrow F$, wo $A$ markiert ist\\
+bzw. $A_1 \wedge A_2 \wedge … ) \rightarrow F$ und alle Formeln sind markiert\\
+wenn so eine da ist, dann bricht der Algorithmus ab und sagt: \textbf{Klauselmenge unerfüllbar}.
+
+Falls keine solche Formel vorhanden, dann weiter mit:
+
+\item suche Formel mit $(A_1 \wedge A_2 \wedge …) \rightarrow A$, wo alle atomaren Formeln auf der linken Seite markiert sind und $A$ noch nicht.
+
+\begin{itemize}
+\item falls es so etwas gibt, markiert man alle Vorkommen von $A$ in allen umgeschriebenen Formeln und geht wieder zum vorherigen Schritt - also schauen, ob es eine Formel mit $(A_1 \wedge …) \rightarrow F$ gibt, usw.
+
+\item falls aber nichts neues mehr markiert werden konnte, dann bricht der Alogrithmus ab und sagt: \textbf{Formel erfüllbar}\\
+und als Geschenk gibt es nach dem Algorithmus sogar noch ein \textbf{minimales Modell} für die Formel, falls sie erfüllbar ist, nämlich die Interpretation, die jede markierte Formel als wahr und jede nicht markierte als falsch interpretiert
+\end{itemize}
+
+\end{enumerate}
+
+\href{http://downloads.mennicke.info/theory/ErfuellbarkeitstestHornformel.html}{Ein Java-Applet zum Markierungsalgorithmus}
+
+\end{document}
