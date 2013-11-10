@@ -104,7 +104,7 @@ $\Leftrightarrow$ Es gibt Interpretation $f$ mit $f(G_1 \AND … \AND G_n) = W$\
 $\Leftrightarrow ( G_1 \AND … \AND G_n)$ erfüllbar $\Box$
 
 \definition{}
-Eine Formelmenge $\Sigma$ \Index{impliziert semantisch} eine Formel $H$, falls für jedes Modell $f$ von $\Sigma$ gilt $f(H) = W$; d.h. $f$ ist auch Modell von $\{H\}$. Wir schreiben $\Sigma \models H$. Ist $\Sigma = \{G\}$ so schreiben wir auch $G \models H $ für $G$ impliziert semantisch $H$.
+Eine Formelmenge $\Sigma$ \Index{impliziert semantisch} eine Formel $H$, falls für jedes Modell $f$ von $\Sigma$ gilt $f(H) = W$; d.h. $f$ ist auch Modell von $\{H\}$. Wir schreiben $\Sigma \models H$. Ist $\Sigma = \{G\}$ so schreiben wir auch $G \models H $ für $G$ \Index{impliziert semantisch} $H$.
 
 \beispiel{}
 $A_1 \AND A_2 \models A_1 \OR A_2$\\
@@ -134,15 +134,15 @@ $\Leftrightarrow G \models H$ und $H \models G$ $\Box$
 Es gibt Formel $G, H$ mit $G \not \models H, H \not \models G$\\
 $G = A_1$, $H=\neg A_1$
 
-\satz{1.7} \textbf{\Index{Gaig'scher Interpolationssatz}}\\
+\satz{1.7} \textbf{\Index{Craig'scher Interpolationssatz}}\\
 Seien $G$ und $H$ Formel mit $G \models H$\\
 Dann gilt mindestens eine der folgenden 3 Aussagen:
 \begin{itemize}
 \item[i)] $H$ ist gültig
 \item[ii)] $G$ ist unerfüllbar
-\item[iii)] Es gibt eine Formel $I$ mit $G \models I$, $I \models H$
-\end{itemize}
+\item[iii)] Es gibt eine Formel $I$ mit $G \models I$, $I \models H$\\
 und jede atomare Teilformel von $I$ ist atomare Teilformel von $G$ und $H$.
+\end{itemize}
 
 \beispiel{}
 $G = (A_1 \AND A_2)$, $H = (A_2 \OR A_3)$\\
