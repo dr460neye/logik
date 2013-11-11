@@ -69,7 +69,8 @@ $\Sigma$ unerfüllbar $\Leftrightarrow$ Es gibt endliche Teilmenge von $\Sigma$,
 \beweis{} Folgt sofort aus Kompaktheitssatz $\Box$
 
 Alogrithmische Anwendung:\\
-Sei $\Sigma$ eine Formelmenge und $\Sigma_n \in \Sigma$ mit
+Sei $\Sigma$ eine Formelmenge und $\Sigma_n \in \Sigma$ mit:\\
+($\Sigma_n \subseteq \Sigma_{n+1}$ für alle $n$)
 \begin{enumerate}
 \item[(1)] $\# \Sigma_n < \infty$
 
@@ -88,3 +89,96 @@ $n=n+1$, gehe zu (2)
 
 Wegen Folgerung 3.2 gilt:\\
 Algorithmus terminiert genau dann, wenn $\Sigma$ unerfüllbar ist.
+
+\newpage
+
+\section{Resolutionen}
+
+Bisher: Test auf Erfüllbarkeit: Semantische Verfahren\\
+„suche Modell“\\
+
+Jetzt: Syntaktische Verfahren\\
+„Transformation der Formel“\\
+
+Für das \Index{Resolutionsverfahren} nimmt man an, dass die Formel schon in VKNF sind.\\ Die Disjunktionsterme werden dazu noch umgeschrieben:\\
+
+Notation: $\bigvee_{i=1}^l L_i$ Disjunktionsterm $\rightsquigarrow \{ L_1, …, L_l \}$
+
+\definition{}
+Eine endliche Menge von Literalen heißt \Index{Klausel}.\\
+Eine Menge von Klauseln heißt Klauselmenge
+
+\bemerkung{}
+\begin{itemize}
+\item Klauseln können das positive und negative Literal zu einer atomaren Formel gleichzeitig enthalten.\\
+Disjunktionsterme aber nicht
+
+\item Klauseln sind endliche Mengen\\
+Klauselmengen können unendlich sein
+\end{itemize}
+
+Notation: Sei $\bigwedge_{i=1}^s \bigvee_{j=1}^{r_i} L_{i,j}$ in VKNF identifizieren diese mit Klauselmenge\\
+$\{ \{ L_{1,1}, …, L_{1, r_1} \}, \{ L_{2,1}, …, L_{2, r_2}\}, …, \{ L_{s,1}, …, L_{s, r_s} \} \}$
+
+\definition{}
+\begin{itemize}
+\item Die leere Klausel wird mit $\Box$ bezeichnet und ist erfüllbar.
+
+\item Eine Klausel $\{ L_1, …, L_l \} + \Box$ ist erfüllbar $\leftrightarrow$ $\bigvee_{i=1}^l L_i$ ist erfüllbar
+
+\item Eine Klauselmenge ist erfüllbar, falls es eine Interpretation $f$ gibt, die alle Klauseln in der Klauselmenge erfüllt.
+
+\item Ein Model einer Klauselmenge ist eine Interpretation $f$, die alle Klauseln in der Klauselmenge erfüllt.
+\end{itemize}
+
+\beispiel{}\\
+$(A_1 \OR \neg A_4) \AND (A_2 \OR \neg A_3 \OR A_4) \AND ( \neg A_1 \OR A_2 \OR A_3)$ VKNF\\
+$\{ \{ A_1, \neg A_3 \}, \{ A_2, \neg A_3, A_4 \}, \{ \neg A_1, A_2, A_3 \} \}$ Klauselmenge\\
+
+$\begin{rcases} f(A_1) = f(A_2) = W \\ f(A_3), f(A_4)\ beliebig \end{rcases}$ ist Modell der Klauselmenge\\
+
+\bemerkung{}
+$K$ Klauselmenge und $\Box \in K \Rightarrow K$ ist unerfüllbar
+
+\definition{}
+Seien $K_1, K_2$ zwei Klauseln und $L_1 \in K_1, L_2 \in K_2$\\
+das positive und negative Literal zu selben atomaren Formel.\\
+
+Dann heißt $R = (K_1 \backslash \{L_1\}) \OR (K_2 \backslash \{L_1\})$ eine \Index{Resolvente} von $K_1$ und $K_2$
+
+\beispiel{}
+$K = \{ \underbrace{ \{ A_1, \neg A_4 \} }_{K_1}, \underbrace{ \{ A_2, \neg A_3, A_4 \} }_{K_2}, \underbrace{ \{ \neg A_1, A_2, A_3 \} }_{K_3} \}$
+
+$L_1 = \neg A_4 \in K_1$\\
+$L_2 = A_4 \in K_2$\\
+$R = (K_1 \backslash \{ L_1 \}) \OR (K_2 \backslash \{L_2\})$ $=\{A_1, A_2, \neg A_3\}$ \\
+
+$L_1 = \neg A_3 \in K_2$\\
+$L_2 = A_3 \in K_3$\\
+$R = (K_2 \backslash \{L_1\}) \OR (K_3 \backslash \{L_2\}) = \{A_2, A_4, \neg A_1\}$\\
+
+$K = \{ \underbrace{ \{ A_1, \neg A_2 \} }_{K_1}, \underbrace{ \{\neg A_1, A_2 \} }_{K_2} \} \rightsquigarrow^{VKNF} (A_1 \OR \neg A_2) \AND (\neg A_1 \OR A_2)$\\
+
+$\begin{rcases} L_1 A_1 \in K_1 \\ L_2 = \neg A_1 \in K_2 \end{rcases} R= (K_1 \backslash \{L_1\}) \OR (K_2 \backslash \{L_2\}) = \{A_2, \neg A_2\} \rightarrow$ gehört nicht zu Disjunktionsterm
+
+\lemma{4.1} (Resolutionslemma)
+Sei $K$ Klauselmenge, $K_1, K_2 \in K$ KLauseln und $R$ Resolvent von $K_1$ und $K_2$\\
+
+Dann gilt
+\begin{enumerate}
+\item[(1)] $K \models R$
+
+\item[(2)] $K \equiv K \cup \{R\}$
+\end{enumerate}
+
+\beispiel{}\\
+$K1 = \{A_1, \neg A_4\}$\\
+$K_2 = \{ A_2, \neg A_3, \neg A_4\}$\\
+$R = \{A_1, A_2, \neg A_3\}$\\
+Wollen sehen $\{K_1, K_2\} \models R$\\
+$f(K_1) = W \rightarrow f(A_1) = W $ oder $ f(\neg A_4) = W$\\
+
+$f(A_1) = W \Rightarrow f(R)=W$\\
+$\begin{rcases} f(\neg A_4) = W \\ f(K_2)=W \end{rcases} f(A_2) = W \\ oder\ f(\neg A_3)$
+$\Rightarrow f(R) = W$\\
+Also $\{K_1, K_2\} \models R$
