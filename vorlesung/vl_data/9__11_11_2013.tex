@@ -1,0 +1,90 @@
+\datum{11.11.2013}
+
+
+Kompaktheitssatz\\
+$\Sigma$ erfüllbar $\Leftrightarrow$ Jede endl. Teilmenge von $\Sigma$ erfüllbar.\\
+
+\beweis{}
+„$\Rightarrow$“\\
+„$\Leftarrow$“ $\Sigma_n$ = Formeln aus $\Sigma$ über $A_1, …, A_n$\\
+$\Sigma'_n =$ Repräsenten der semantischen Klassen aus $\Sigma_n$\\
+
+Fakt: $\# \Sigma'_n < \infty$\\
+Daher $\Sigma'_n$ erfüllbar und es gibt Modell $f_n$
+
+\begin{enumerate}
+\item[(1)] $I = \{1, 2, … \}, i=1$
+
+\item[(2)] $\# \{ n \in I | f_n(A_i)=W \} = \infty \rightsquigarrow f(A_i) = W$\\
+$I= I \backslash \{ n | f_n(A_i) = F \}$\\
+sonst $f(A_i)=F, I:= I \backslash \{ n | f_n(A_i) = W \}$
+
+\item[(3)] $i=i+1$ gehe zu (2)
+\end{enumerate}
+
+Wir zeigen: $f$ ist Modell für $G$\\
+
+\behauptung{}
+Sei $I$ die Menge der Indizes nach dem $i$-ten Durchlauf von (2)-(3).\\
+Dann gilt $\# I = \infty$ und für alle $m \in I$ ist $f_m (A_j) = f(A_j), 1 \leq j \leq i$\\
+
+\beweis{}
+Induktion nach $i$\\
+I.A.:\\
+$i=0$\\
+$\# I = \# \{ 1, 2, … \} = \infty$\\
+und $f(A_j) = f_m(A_j)$ für $1 \leq j \leq i$ ist leere Bed.\\
+
+I.S.:\\
+$i \rightarrow i+1$\\
+Sei $I$ die Menge nach dem $(i+1)$-ten Durchlauf und $I'$ die Menge nach dem $i$-ten Durchlauf\\
+
+\underline{1. Fall} $\# \{ n \in I' | f_n(A_{i+1}) = W \} = \infty$\\
+$\rightarrow I = I' \backslash \{ n \in I' | f_n(A_{i+1}) = F \}$\\
+$= \{ n \in I' | f_n(A_{i+1}) = W \}$\\
+$\Rightarrow \# I=\infty$\\
+
+Nach I.V. gilt $f_m(A_j) = f(A_j), 1 \leq j \leq i$\\
+und $m \in I'$\\
+Da $I \subseteq I'$ folgt\\
+$f_m(A_j) = f(A_j), 1 \leq j \leq i$ und $m \in I$\\
+Im 1. Fall wird $f(A_{i+1})=W$ und $f_m(A_{i+1})=W$ für $m \in I$\\
+$\Rightarrow f(A_j) = f_m(A_j)$ für $1 \leq j \leq i+1$ und $m \in I$\\
+\underline{2. Fall} $\# \{ n \in I' | f_n(A_{i+1})=W \} < \infty$\\
+$\Rightarrow$ Da nach I.V. $\# I' = \infty \Rightarrow \# \{n \in I' | f_n(A_{i+1}) = F \} = \infty$\\
+
+Beweis nun analog zum 1. Fall\\
+Sei $G \in \Sigma \Rightarrow$ es gibt $n \in \{1, 2, …\}$ mit $G \in \Sigma_n$\\
+Nach Beh. folgt dass $\# \{ m | f(A_j) = f_m(A_j), 1 \leq j \leq n \} = \infty$\\
+also gibt es ein $m \geq n$ mit $f(A_j) = f_m(A_j), 1 \leq j \leq m$\\
+$f_m$ ist Modell von $\Sigma_m$ wegen $\Sigma_n^{n \leq m} \subseteq \Sigma_m$ ist $f_m$ auch Modell von $\Sigma_n \Rightarrow f_m(G) = W$
+Aber $f_m(G) = f(G) $ da $f(A_j) = f_m(A_j), 1 \leq A_j \leq n \leq m$\\
+$\Rightarrow f(G) = W$ $\Box$
+
+\folgerung{3.2}
+Sei $\Sigma$ Formelmenge\\
+Dann gilt:\\
+$\Sigma$ unerfüllbar $\Leftrightarrow$ Es gibt endliche Teilmenge von $\Sigma$, die unerfüllbar ist.
+
+\beweis{} Folgt sofort aus Kompaktheitssatz $\Box$
+
+Alogrithmische Anwendung:\\
+Sei $\Sigma$ eine Formelmenge und $\Sigma_n \in \Sigma$ mit
+\begin{enumerate}
+\item[(1)] $\# \Sigma_n < \infty$
+
+\item[(2)] $\bigcup_{n=1}^{\infty} \Sigma_n = \Sigma$
+\end{enumerate}
+
+\begin{enumerate}
+\item[(1)] $n=1$
+
+\item[(2)] Ist $\Sigma_n$ unerfüllbar STOP.\\
+$\Sigma$ ist unerfüllbar \hspace{1cm} (kann wegen $\# \Sigma_n < \infty$ getestet werden)
+
+Ist $\Sigma_n$ erfüllbar\\
+$n=n+1$, gehe zu (2)
+\end{enumerate}
+
+Wegen Folgerung 3.2 gilt:\\
+Algorithmus terminiert genau dann, wenn $\Sigma$ unerfüllbar ist.
