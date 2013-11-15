@@ -1,0 +1,42 @@
+\documentclass[a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\textbf{Was ist ein Resolvent von zwei Klauseln?}\\
+
+Wir haben zwei Klauseln $k_1$ und $k_2$:\\
+$k_1 = \{ \neg A_1, A_2, ... \}$\\
+$k_2 = \{ A_1, A_3, ... \}$\\
+
+Was da genau drinsteht, ist eigentlich beliebig, wichtig ist nur:\\
+In einer Klausel steht $A_{irgendwas}$ und in der anderen $\neg A_{irgendwas}$\\
+also hier im Beispiel $\neg A_1$ in $k_1$ und $A_1$ in $k_2$\\
+falls das nicht der Fall wäre, hätten diese Klauseln auch keinen Resolventen.\\
+
+Der Resolvent schaut dann so aus: alle Literale aus $k_1$ und alle Literale aus $k_2$ zusammen, und die zwei, die als $\neg A_{irgendwas}$ $A_{irgendwas}$ vorkommen, schmeißt man ganz raus.\\
+In diesem Beispiel wäre der Resolvent von $k_1$ und $k_2$ also: $\{A_2, A_3\}$\\
+\\
+
+\textbf{Das Resolutionsverfahren}\\
+
+Die Ausgangssituation:\\
+eine Klauselmenge $K = \{ k_1, k_2, ..., k_n \}$\\
+
+jetzt sollen alle Klauselpaare gefunden werden, zu denen sich ein Resolvent bilden lässt. Wenn so ein Klauselpaar gefunden wurde, dann bildet man den Resolventen und schreibt den hinten in die Klauselmenge dazu.\\
+
+Dies wiederholen, bis \underline{entweder} kein Resolvent mehr gebildet werden kann\\
+\underline{oder} man die leere Klausel in die Menge bekommt.\\
+Dies erreicht man z.B. beim resolvieren von $\{ A_1 \} $ und $\{ \neg A_1\}$.\\
+
+Ist man fertig und die leere Klausel ist \textbf{nicht} in der Menge, dann ist die Klauselmenge erfüllbar, ansonsten nicht.\\
+
+\begin{small}
+(Markierungsalgorithmus funktioniert nur für Hornformeln, Resolutionsverfahren für jede Art von Formeln)
+\end{small}
+
+\end{document}
